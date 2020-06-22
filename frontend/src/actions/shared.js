@@ -13,11 +13,5 @@ import { getCommentsByPost } from '../api/comments'
       ]);
       dispatch(receiveCategories(categories));
       dispatch(receivePosts(posts));
-      posts.forEach(async function(post){
-        const comment = await Promise.all([
-          getCommentsByPost(post.id),
-        ]);
-        dispatch (receiveComments(comment))
-      });
     }
   }
