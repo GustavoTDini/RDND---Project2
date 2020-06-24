@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENTS } from '../Utilities/actionsTypes'
+import { RECEIVE_COMMENTS } from '../actionsTypes'
 
 export function receiveComments (comments) {
   return {

@@ -1,9 +1,7 @@
 import { receivePosts } from './posts'
 import { receiveCategories } from './categories'
-import { receiveComments } from './comments'
-import { getAllCategories } from '../api/categories'
-import { getAllPosts } from '../api/posts'
-import { getCommentsByPost } from '../api/comments'
+import { getAllCategories } from '../../api/categories'
+import { getAllPosts } from '../../api/posts'
 
   export function handleInitialData () {
     return async (dispatch) => {

@@ -1,5 +1,3 @@
-import { formatPost, formatComment } from "../Utilities/APIHelpers";
-
 export const api = process.env.REACT_APP_READABLE_API || 'http://localhost:3001';
 
 export let token = localStorage.token

@@ -1,4 +1,4 @@
-import { RECEIVE_CATEGORIES } from '../Utilities/actionsTypes'
+import { RECEIVE_CATEGORIES } from '../actionsTypes'
 
 export function receiveCategories (categories) {
   return {

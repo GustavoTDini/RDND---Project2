@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS } from '../Utilities/actionsTypes'
+import { RECEIVE_POSTS } from '../actionsTypes'
 
 export default function posts ( state = {}, action){
     switch (action.type){

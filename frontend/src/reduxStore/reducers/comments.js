@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENTS } from '../Utilities/actionsTypes'
+import { RECEIVE_COMMENTS } from '../actionsTypes'
 
 export default function comments ( state = {}, action){
     switch (action.type){
