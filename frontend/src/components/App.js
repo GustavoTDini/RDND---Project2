@@ -4,12 +4,12 @@ import { handleInitialData } from '../reduxStore/actions/shared'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import NavBar from './NavBar'
+import { NavBar } from './NavBar'
 import { PostCard } from './PostCard'
 import { CommentCard } from './CommentCard'
 import { AddComment } from './AddComment'
 import { AddPost } from './AddPost'
-import PostListItem from './PostListItem'
+import { PostListItem } from './PostListItem'
 
 class App extends Component {
   componentDidMount() {

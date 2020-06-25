@@ -5,7 +5,7 @@ export default function comments ( state = {}, action){
         case RECEIVE_COMMENTS :
             return{
                 ...state,
-                ...action.comments
+                ...state, ...action.comments
             }
         default:
             return state
