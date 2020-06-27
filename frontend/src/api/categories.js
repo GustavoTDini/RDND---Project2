@@ -1,12 +1,7 @@
 import { headers, api } from "../api/readerApi";
 
-
-export const getAllCategories = () => {
-    return fetch(`${api}/categories`, { method: 'GET', headers })
+export const _getAllCategories = () => 
+    fetch(`${api}/categories`, { method: 'GET', headers })
       .then(res => res.json())
-  }
+      .then(data => data.categories)
 
-  export const getPostsByCategories = (categoryName) => {
-    return fetch(`${api}/${categoryName}/posts/`, { headers })
-      .then(res => res.json())
-  }

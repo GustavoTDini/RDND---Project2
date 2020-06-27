@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Media from 'react-bootstrap/Media'
 import Button from 'react-bootstrap/Button'
 import { TiThumbsUp } from "react-icons/ti"
+import { TiThumbsDown } from "react-icons/ti"
 
 export function PostCard() {
   return (
@@ -11,11 +12,18 @@ export function PostCard() {
         <Card.Header>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
             <Card.Title style={{ flex: 1 }}><h3>Title</h3></Card.Title>
-            <p>Timestamp</p>
+            <div style={{ flexFlow: 'column', textAlign:'end' }}>
+              <p>Timestamp</p>
+              <p>score</p>
+              <div style={{ display: 'flex', alignContent: 'space-between' }}>
+                <Button><TiThumbsUp /></Button>
+                <Button style={{ marginLeft: 10 }}><TiThumbsDown /></Button>
+              </div>
+            </div>
           </div>
         </Card.Header>
         <Card.Body>
-          <Media>
+          <Media style={{ marginTop: 10}}>
             <Media.Body>
               <h4>Author</h4>
               <p>body</p>
@@ -24,9 +32,11 @@ export function PostCard() {
         </Card.Body>
         <Card.Footer>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <Button href="#">New Comment</Button>
-            <div style={{ flex: 3 }} />
-            <Button shadow-none ><TiThumbsUp /></Button>
+            <Button >Edit</Button>
+            <div style={{ flex: 1 }} />
+            <Button >New Comment</Button>
+            <div style={{ flex: 1 }} />
+            <Button variant='danger'>Delete</Button>
           </div>
         </Card.Footer>
       </Card>

@@ -1,39 +1,31 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { handleInitialData } from '../reduxStore/actions/shared'
+import React, { Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { NavBar } from './NavBar'
 import { PostCard } from './PostCard'
-import { CommentCard } from './CommentCard'
-import { AddComment } from './AddComment'
 import { AddPost } from './AddPost'
-import { PostListItem } from './PostListItem'
+import { PostList } from './PostList'
 
-class App extends Component {
-  componentDidMount() {
-    this.props.dispatch(handleInitialData())
-  }
+export function App() {
 
-  render() {
-    return (
-      <div>
-        <NavBar />
-        <Container fluid>  
-          <Row>
-            <Col md={{ span: 6, offset: 3 }}>
-              <PostCard/>
-              <CommentCard/>
-              <AddComment/>
-              <AddPost/>
-              <PostListItem/>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Router>
+        <Fragment>
+          <NavBar />
+          <Container fluid>
+            <Row>
+              <Col md={{ span: 6, offset: 3 }}>
+                <Route path='/home' component={PostList} />
+                <Route path='/newPost' component={AddPost} />
+                <Route path='/post' component={PostCard} />
+              </Col>
+            </Row>
+          </Container>
+        </Fragment>
+      </Router>
+    </div>
+  )
 }
-
-export default connect()(App)
