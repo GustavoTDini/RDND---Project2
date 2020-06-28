@@ -1,15 +1,14 @@
-import { SET_SORTING_TYPE, SET_SORTING_DIRECTION } from './posts'
+import { SET_SORTING_TYPE, SET_SORTING_DIRECTION } from '../actionsTypes'
 
-export function setSortingType (sortBy){
-  return{
+export function setSortingType(sortBy) {
+  return {
     type: SET_SORTING_TYPE,
     sortBy,
   }
 }
 
-export function setSortingDirection (ascending){
-  return{
+export function setSortingDirection() {
+  return {
     type: SET_SORTING_DIRECTION,
-    ascending,
   }
 }

@@ -1,11 +1,17 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, {useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { createPostList } from '../Utilities/helperFunctions'
 import { PostListItem } from './PostListItem'
+import { receivePosts } from '../reduxStore/actions/posts'
 
 export function PostList() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(receivePosts())
+  }, [dispatch])
+
   const posts = useSelector(state => createPostList(state.posts))
-  console.log(posts[0])
 
   return (
     <div>
