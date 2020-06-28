@@ -23,7 +23,7 @@ import {
 export function receivePosts() {
   return (dispatch) => {
     dispatch(showLoading())
-    return _getAllPosts()
+    _getAllPosts()
       .then((posts) => {
         dispatch({
           type: RECEIVE_POSTS,
@@ -37,7 +37,7 @@ export function receivePosts() {
 export function receivePostsByCategories(categorieName) {
   return (dispatch) => {
     dispatch(showLoading())
-    return _getPostsByCategories()
+    _getPostsByCategories()
       .then((posts) => {
         dispatch({
           type: RECEIVE_POSTS_BY_CATEGORIES,
@@ -58,7 +58,7 @@ export function addPost(title, body, author, category) {
       author,
       category,
     )
-    return _addNewPost(newPost)
+    _addNewPost(newPost)
       .then(() => {
         dispatch({
           type: ADD_POST,
@@ -72,7 +72,7 @@ export function addPost(title, body, author, category) {
 export function getSinglePost(postId) {
   return (dispatch) => {
     dispatch(showLoading())
-    return _getPostsById(postId)
+    _getPostsById(postId)
       .then((post) => {
         dispatch({
           type: GET_POST_BY_ID,
@@ -86,7 +86,7 @@ export function getSinglePost(postId) {
 export function voteForPost(postId, vote) {
   return (dispatch) => {
     dispatch(showLoading())
-    return _votePost(postId, vote)
+    _votePost(postId, vote)
       .then((post) => {
         dispatch({
           type: VOTE_POST,
@@ -100,7 +100,7 @@ export function voteForPost(postId, vote) {
 export function editPost(postId, title, body) {
   return (dispatch) => {
     dispatch(showLoading())
-    return _editPost({ postId, title, body })
+    _editPost({ postId, title, body })
       .then((post) => {
         dispatch({
           type: EDIT_POST,
@@ -114,7 +114,7 @@ export function editPost(postId, title, body) {
 export function deletePost(postId) {
   return (dispatch) => {
     dispatch(showLoading())
-    return _deletePost({ postId })
+    _deletePost({ postId })
       .then((post) => {
         dispatch({
           type: DELETE_POST,

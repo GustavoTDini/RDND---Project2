@@ -27,7 +27,6 @@ export function App() {
                   <div style={{margin:'auto', display:'table'}}>
                     <Spinner animation="border" variant="primary" style={{flex:1, alignSelf:'center'}}/>
                   </div>
-                  
                   <h4>Loading...</h4>
                 </div> :
                 <Col md={{ span: 6, offset: 3 }}>
