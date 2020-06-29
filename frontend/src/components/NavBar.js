@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -11,6 +11,7 @@ import { TiArrowUpOutline, TiArrowDownOutline } from "react-icons/ti"
 import { receiveCategories } from '../reduxStore/actions/categories'
 import { setSortingType, setSortingDirection } from '../reduxStore/actions/sorting'
 import { SORT_METHODS } from '../Utilities/constants'
+import { capitalizeFirstLetter } from '../Utilities/helperFunctions'
 
 export function NavBar() {
 
@@ -23,7 +24,8 @@ export function NavBar() {
 
   const categories = useSelector(state => state.categories)
   const descending = useSelector(state => state.sorting.direction)
-  console.log(categories)
+
+  const [selectedCategory, setSelectedCategory] = useState(null)
 
   return (
     <Navbar bg="primary" variant="dark" style={{ marginBottom: 30 }}>
@@ -36,7 +38,8 @@ export function NavBar() {
         {Array.isArray(categories) && categories.map((category) => (
           <Dropdown.Item 
           key={category.path}
-          >{category.name}</Dropdown.Item>
+          onClick={() => setSelectedCategory(category.path)}
+          >{capitalizeFirstLetter(category.name)}</Dropdown.Item>
         ))}
       </DropdownButton>
       <DropdownButton style={{ marginRight: 20 }} id="dropdown-filter" title="Filter">

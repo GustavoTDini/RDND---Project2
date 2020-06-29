@@ -1,7 +1,6 @@
 import {
     RECEIVE_POSTS,
     RECEIVE_POSTS_BY_CATEGORIES,
-    ADD_POST
 } from '../actionsTypes'
 
 export default function posts(state = {}, action) {
@@ -10,11 +9,6 @@ export default function posts(state = {}, action) {
             return action.posts
         case RECEIVE_POSTS_BY_CATEGORIES:
             return action.posts
-        case ADD_POST:
-            return {
-                ...state,
-                ...action.post,
-            }
         default:
             return state
     }

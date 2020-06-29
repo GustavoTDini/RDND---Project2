@@ -29,8 +29,7 @@ export function receivePosts() {
           type: RECEIVE_POSTS,
           posts,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -43,29 +42,22 @@ export function receivePostsByCategories(categorieName) {
           type: RECEIVE_POSTS_BY_CATEGORIES,
           posts,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
 
 export function addPost(title, body, author, category) {
+  console.log(title, body, author, category )
   return (dispatch) => {
     dispatch(showLoading())
-    const newPost = formatPost(
-      title,
-      body,
-      author,
-      category,
-    )
-    _addNewPost(newPost)
-      .then(() => {
+    _addNewPost(title, body, author, category)
+      .then((newPost) => {
         dispatch({
           type: ADD_POST,
           newPost,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -78,8 +70,7 @@ export function getSinglePost(postId) {
           type: GET_POST_BY_ID,
           post,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -92,8 +83,7 @@ export function voteForPost(postId, vote) {
           type: VOTE_POST,
           post,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -106,8 +96,7 @@ export function editPost(postId, title, body) {
           type: EDIT_POST,
           post,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -120,8 +109,7 @@ export function deletePost(postId) {
           type: DELETE_POST,
           post,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 

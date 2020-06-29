@@ -27,8 +27,7 @@ export function receivePostComments(postId) {
           type: RECEIVE_COMMENTS_BY_POST,
           comments,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -46,8 +45,7 @@ export function addComment(body, author, postId) {
           type: ADD_COMMENT,
           newPost,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -60,8 +58,7 @@ export function getSingleComment(commentId) {
           type: GET_COMMENT_BY_ID,
           comment,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -74,8 +71,7 @@ export function voteForComment(commentId, vote) {
           type: VOTE_COMMENT,
           comment,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -88,8 +84,7 @@ export function editPost(commentId, body) {
           type: EDIT_COMMENT,
           comment,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }
 
@@ -102,7 +97,6 @@ export function deleteComment(commentId) {
           type: DELETE_COMMENT,
           comment,
         })
-        dispatch(hideLoading())
-      })
+      }).then(dispatch(hideLoading()))
   }
 }

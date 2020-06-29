@@ -1,4 +1,5 @@
 import {
+  ADD_POST,
   GET_POST_BY_ID,
   VOTE_POST,
   EDIT_POST,
@@ -7,6 +8,11 @@ import {
 
 export default function posts(state = {}, action) {
   switch (action.type) {
+    case ADD_POST:
+      return {
+        ...state,
+        ...action.newPost
+      } 
     case GET_POST_BY_ID:
       return action.post
     case VOTE_POST:

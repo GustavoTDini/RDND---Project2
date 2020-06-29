@@ -9,17 +9,20 @@ export const _getPostsByCategories = (categoryName) =>
   fetch(`${api}/${categoryName}/posts/`, { headers })
     .then(res => res.json())
 
-export const _addNewPost = (title, body, author, category) => 
-  fetch(`${api}/posts`, {
+export const _addNewPost = (title, body, author, category) => {
+  return fetch(`${api}/posts`, {
     method: 'POST',
     headers,
-    body: JSON.stringify(formatPost({
+    body: JSON.stringify(formatPost(
       title,
       body,
       author,
       category,
-    }))
+    ))
   }).then(res => res.json())
+}
+
+
 
 export const _getPostsById = (postId) => 
   fetch(`${api}/posts/${postId}`, { headers })

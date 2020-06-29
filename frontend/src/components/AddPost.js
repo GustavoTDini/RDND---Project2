@@ -7,11 +7,12 @@ import Form from 'react-bootstrap/Form'
 import { addPost } from '../reduxStore/actions/posts'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
+import { capitalizeFirstLetter } from '../Utilities/helperFunctions'
 
 export function AddPost() {
   const dispatch = useDispatch()
   const [input, setInput] = useState({})
-  const [category, setCategory] = useState('React')
+  const [category, setCategory] = useState('react')
   const categories = useSelector(state => state.categories)
 
   const handleInputChange = (e) => setInput({
@@ -54,12 +55,12 @@ export function AddPost() {
                 onChange={handleInputChange} />
             </Form.Group>
             <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <DropdownButton style={{ flex: 1 }} title={category}>
+            <DropdownButton style={{ flex: 1 }} title={capitalizeFirstLetter(category)}>
                 {Array.isArray(categories) && categories.map((category) => (
                   <Dropdown.Item
                     key={category.path}
                     onClick={() => setCategory(category.name)}
-                  >{category.name}</Dropdown.Item>
+                  >{capitalizeFirstLetter(category.name)}</Dropdown.Item>
                 ))}
               </DropdownButton> 
               <div style={{ flex: 1 }} />
