@@ -8,12 +8,12 @@ export const HOME = 'HOME'
 
 export const SORT_METHODS = [
     {name:'Time', 
-     option:'time'
+     option:'timestamp'
   },
     {name:'Score', 
-     option:'score'
+     option:'voteScore'
   },
       {name:'Author´s Name', 
-     option:'authorName'
+     option:'author'
   } 
 ]

@@ -1,17 +1,25 @@
 import React, {useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createPostList } from '../Utilities/helperFunctions'
+import { createPostList, sortPostList} from '../Utilities/helperFunctions'
 import { PostListItem } from './PostListItem'
-import { receivePosts } from '../reduxStore/actions/posts'
+import { receivePosts, receivePostsByCategories } from '../reduxStore/actions/posts'
 
-export function PostList() {
+export function PostList(props) {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(receivePosts())
-  }, [dispatch])
+    if (props.category){
+      dispatch(receivePostsByCategories(props.category))
+    } else{
+      dispatch(receivePosts())
+    }
+  }, [dispatch, props.category])
 
-  const posts = useSelector(state => createPostList(state.posts))
+  const sortingType = useSelector(state => state.sorting.sortBy)
+  const descending = useSelector(state => state.sorting.direction)
+
+  const posts = useSelector(state => sortPostList(createPostList(state.posts), sortingType, descending))
+  console.log(posts)
 
   return (
     <div>

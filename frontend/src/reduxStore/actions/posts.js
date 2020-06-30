@@ -1,4 +1,3 @@
-import { formatPost } from '../../Utilities/APIHelpers'
 import { showLoading, hideLoading } from './loading'
 import {
   RECEIVE_POSTS,
@@ -33,10 +32,11 @@ export function receivePosts() {
   }
 }
 
-export function receivePostsByCategories(categorieName) {
+export function receivePostsByCategories(categoryName) {
+  console.log(categoryName)
   return (dispatch) => {
     dispatch(showLoading())
-    _getPostsByCategories()
+    _getPostsByCategories(categoryName)
       .then((posts) => {
         dispatch({
           type: RECEIVE_POSTS_BY_CATEGORIES,

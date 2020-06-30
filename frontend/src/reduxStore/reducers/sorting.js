@@ -8,7 +8,7 @@ export default function sorting(state = {}, action) {
     case SET_SORTING_TYPE:
       return {
         ...state,
-        sortby: action.sortBy
+        sortBy: action.sortBy
       }
     case SET_SORTING_DIRECTION:
       return {
