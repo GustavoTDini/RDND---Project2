@@ -1,5 +1,3 @@
-import { Switch } from "react-router-dom";
-
 export function createPostList(postList) {
   let arrayList = []
   for (let index in postList) {
@@ -50,6 +48,6 @@ export function formatTime(timestamp) {
   return dateString
 }
 
-export function capitalizeFirstLetter(string) {
+export function capitalizeString(string) {
   return string[0].toUpperCase() + string.slice(1);
 }

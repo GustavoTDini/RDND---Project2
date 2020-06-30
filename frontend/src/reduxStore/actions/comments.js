@@ -15,7 +15,7 @@ import {
   _voteComment,
   _editComment,
   _deleteComment
-} from '../../api/posts'
+} from '../../api/comments'
 
 
 export function receivePostComments(postId) {
@@ -25,6 +25,7 @@ export function receivePostComments(postId) {
       .then((comments) => {
         dispatch({
           type: RECEIVE_COMMENTS_BY_POST,
+          postId,
           comments,
         })
       }).then(dispatch(hideLoading()))

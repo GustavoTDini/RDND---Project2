@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
@@ -11,7 +10,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { TiArrowUpOutline, TiArrowDownOutline } from "react-icons/ti"
 import { setSortingType, setSortingDirection } from '../reduxStore/actions/sorting'
 import { SORT_METHODS } from '../Utilities/constants'
-import { capitalizeFirstLetter } from '../Utilities/helperFunctions'
+import { capitalizeString } from '../Utilities/helperFunctions'
 import { LinkContainer } from 'react-router-bootstrap'
 
 export function NavBar() {
@@ -39,7 +38,7 @@ export function NavBar() {
            key={category.path}>
           <Dropdown.Item
             >
-            {capitalizeFirstLetter(category.name)}
+            {capitalizeString(category.name)}
           </Dropdown.Item>
           </LinkContainer>
         ))}

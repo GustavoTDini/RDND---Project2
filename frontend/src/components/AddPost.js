@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import { addPost } from '../reduxStore/actions/posts'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
-import { capitalizeFirstLetter } from '../Utilities/helperFunctions'
+import { capitalizeString } from '../Utilities/helperFunctions'
 
 export function AddPost() {
   const dispatch = useDispatch()
@@ -34,7 +34,7 @@ export function AddPost() {
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Title your post"
+                placeholder="Enter a title for your post"
                 name='title'
                 onChange={handleInputChange} />
             </Form.Group>
@@ -54,16 +54,18 @@ export function AddPost() {
                 name='body'
                 onChange={handleInputChange} />
             </Form.Group>
-            <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <DropdownButton style={{ flex: 1 }} title={capitalizeFirstLetter(category)}>
+            <div style={{ display: 'flex', alignContent: 'space-between', alignItems: 'center'}}>
+            <Form.Label>Category</Form.Label>
+            <DropdownButton style={{ flex: 1, marginLeft: 10 }} title={capitalizeString(category)}>
                 {Array.isArray(categories) && categories.map((category) => (
                   <Dropdown.Item
                     key={category.path}
                     onClick={() => setCategory(category.name)}
-                  >{capitalizeFirstLetter(category.name)}</Dropdown.Item>
+                  >{capitalizeString(category.name)}</Dropdown.Item>
                 ))}
               </DropdownButton> 
               <div style={{ flex: 1 }} />
+              
               <Button
                 style={{ flex: 1 }}
                 variant="primary"

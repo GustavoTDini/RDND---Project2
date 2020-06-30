@@ -9,8 +9,7 @@ export default function comments(state = {}, action) {
     switch (action.type) {
         case RECEIVE_COMMENTS_BY_POST:
             return {
-                ...state,
-                [action.parentId]: action.comments
+                [action.postId]: action.comments
             }
         case ADD_COMMENT:
             return {

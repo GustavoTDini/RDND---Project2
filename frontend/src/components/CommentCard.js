@@ -1,29 +1,36 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import Media from 'react-bootstrap/Media'
 import { TiThumbsUp } from "react-icons/ti"
 import { TiThumbsDown } from "react-icons/ti"
 import Button from 'react-bootstrap/Button'
+import { formatTime } from '../Utilities/helperFunctions'
 
-export function CommentCard() {
+export function CommentCard(props) {
+  const selectedPost = useSelector(state => state.selectedPost)
+  const comment = useSelector(state => state.comments[selectedPost.id].find((comment) => comment.id === props.commentId))
+  
+  console.log(comment)
+
   return (
     <div style={{ paddingBottom: 20 }}>
       <Card border='primary'>
         <Card.Body>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <Card.Title style={{ flex: 1 }}><h4>Author</h4></Card.Title>
+            <Card.Title style={{ flex: 1 }}><h4>{comment.author}</h4></Card.Title>
             <div style={{ flexFlow: 'column', textAlign:'end' }}>
-              <p>Timestamp</p>
-              <p>score</p>
+              <p>Commented in {formatTime(comment.timestamp)}</p>
+              <p>Vote Score: {comment.voteScore}</p>
               <div style={{ display: 'flex', alignContent: 'space-between' }}>
-                <Button shadow-none><TiThumbsUp /></Button>
-                <Button shadow-none style={{ marginLeft: 10 }}><TiThumbsDown /></Button>
+                <Button><TiThumbsUp /></Button>
+                <Button style={{ marginLeft: 10 }}><TiThumbsDown /></Button>
               </div>
             </div>
           </div>
           <Media style={{ marginTop: 10}}>
             <Media.Body>
-              <p>body</p>
+              <p>{comment.body}</p>
             </Media.Body>
           </Media>
         </Card.Body>

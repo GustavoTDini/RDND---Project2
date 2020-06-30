@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { NavBar } from './NavBar'
-import { PostCard } from './PostCard'
 import { AddPost } from './AddPost'
 import { PostList } from './PostList'
 import Spinner from 'react-bootstrap/Spinner'
+import { PostDetail } from './PostDetail';
 
 export function App() {
 
@@ -40,7 +40,7 @@ export function App() {
                   <Switch>
                     <Route path='/home' component={PostList} />
                     <Route path='/newPost' exact component={AddPost} />
-                    <Route path='/post' component={PostCard} />
+                    <Route path='/post' component={PostDetail} />
                     {Array.isArray(categories) && categories.map((category) => (
                       <Route path={`/${category.path}`} exact key={category.name}>
                         <PostList category={category.name} />

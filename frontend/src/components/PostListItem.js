@@ -14,7 +14,12 @@ export function PostListItem(props) {
   return (
     <Card border='primary' style={{ marginBottom: 30, marginTop: 30 }}>
       <Card.Header>
-        <Link to={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
+        <Link 
+          to={{
+            pathname:`/post/${post.id}`, 
+            postId: post.id
+          }} 
+          style={{ textDecoration: 'none' }}>
           <Card.Title style={{ flex: 1 }}><h5>{post.title}</h5></Card.Title>
           <p style={{ fontSize: 10 }}>Posted by {post.author} in {formatTime(post.timestamp)}</p>
         </Link>

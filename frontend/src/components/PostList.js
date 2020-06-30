@@ -1,6 +1,6 @@
 import React, {useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createPostList, sortPostList} from '../Utilities/helperFunctions'
+import { createPostList, sortPostList, capitalizeString} from '../Utilities/helperFunctions'
 import { PostListItem } from './PostListItem'
 import { receivePosts, receivePostsByCategories } from '../reduxStore/actions/posts'
 
@@ -19,10 +19,12 @@ export function PostList(props) {
   const descending = useSelector(state => state.sorting.direction)
 
   const posts = useSelector(state => sortPostList(createPostList(state.posts), sortingType, descending))
-  console.log(posts)
-
+  
   return (
     <div>
+      {props.category?
+      <h2>{`${capitalizeString(props.category)} posts`}</h2>:null
+    }
       {posts.map((post) => (
         <PostListItem key={post.id} postId={post.id}/>
       ))}
