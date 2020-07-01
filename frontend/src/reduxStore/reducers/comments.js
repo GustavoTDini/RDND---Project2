@@ -19,12 +19,18 @@ export default function comments(state = {}, action) {
         case GET_COMMENT_BY_ID:
             return action.comment
         case VOTE_COMMENT:
-            return action.comment
+            var otherComments = state[action.comment.parentId].filter((comment) =>  comment.id !== action.comment.id)
+            return {
+                [action.comment.parentId]: [action.comment, ...otherComments]
+            }
         case EDIT_COMMENT:
             return action.comment
         case DELETE_COMMENT:
-            return action.comment
+            return {
+                [action.comment.parentId]: state[action.comment.parentId].filter((comment) =>  comment.id !== action.comment.id)
+            }
         default:
             return state
     }
 }
+

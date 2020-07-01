@@ -65,14 +65,13 @@ export function getSingleComment(commentId) {
 
 export function voteForComment(commentId, vote) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _voteComment(commentId, vote)
       .then((comment) => {
         dispatch({
           type: VOTE_COMMENT,
           comment,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 

@@ -22,19 +22,16 @@ export const _addNewPost = (title, body, author, category) => {
   }).then(res => res.json())
 }
 
-
-
 export const _getPostsById = (postId) => 
   fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
 
 export const _votePost = (postId, vote) => {
-  fetch(`${api}/posts/${postId}`, {
+  return fetch(`${api}/posts/${postId}`, {
     method: 'POST',
     headers,
     body: JSON.stringify({ option: vote })
-  })
-    .then(res => res.json())
+  }).then(res => res.json())
 }
 
 export const _editPost = ({ postId, title, body }) => 

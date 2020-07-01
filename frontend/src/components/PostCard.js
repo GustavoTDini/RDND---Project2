@@ -3,35 +3,34 @@ import { useSelector } from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import Media from 'react-bootstrap/Media'
 import Button from 'react-bootstrap/Button'
-import { TiThumbsUp } from "react-icons/ti"
-import { TiThumbsDown } from "react-icons/ti"
+import { VoteButton } from './VoteButton' 
 import { formatTime } from '../Utilities/helperFunctions'
+import { DeleteButton } from './DeleteButton'
 
 export function PostCard() {
 
   const post = useSelector(state => state.selectedPost)
 
+
   return (
     <div style={{ paddingBottom: 20 }}>
       <Card border='primary'>
-        <Card.Header>
+        <Card.Header style={{ backgroundColor: '#0177F7', color: 'white' }}>
+          <Card.Title style={{ flex: 1 }}><h3>{post.title}</h3></Card.Title>
+          <p style={{ fontSize: 14 }} >Posted by {post.author} in {formatTime(post.timestamp)}</p>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <Card.Title style={{ flex: 1 }}><h3>{post.title}</h3></Card.Title>
-            <div style={{ flexFlow: 'column', textAlign:'end' }}>
-              <p>Posted in {formatTime(post.timestamp)}</p>
-              <p>Vote Score: {post.voteScore}</p>
-              <div style={{ display: 'flex', alignContent: 'space-between' }}>
-                <Button><TiThumbsUp /></Button>
-                <Button style={{ marginLeft: 10 }}><TiThumbsDown /></Button>
-              </div>
-            </div>
+            <p style={{ fontSize: 20 }} >Vote Score: {post.voteScore}</p>
+            <div style={{ flex: 1 }} />
+            <VoteButton
+              light
+              id={post.id}
+              type={'post'}/>
           </div>
         </Card.Header>
         <Card.Body>
-          <Media style={{ marginTop: 10}}>
+          <Media style={{ marginTop: 10 }}>
             <Media.Body>
-              <h4>{post.author}</h4>
-              <p>{post.body}</p>
+              <p style={{ fontSize: 20 }} >{post.body}</p>
             </Media.Body>
           </Media>
         </Card.Body>
@@ -41,7 +40,9 @@ export function PostCard() {
             <div style={{ flex: 1 }} />
             <Button >New Comment</Button>
             <div style={{ flex: 1 }} />
-            <Button variant='danger'>Delete</Button>
+            <DeleteButton
+              id={post.id}
+              type={'post'}/>
           </div>
         </Card.Footer>
       </Card>

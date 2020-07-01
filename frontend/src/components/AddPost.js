@@ -26,7 +26,9 @@ export function AddPost() {
   }
 
   return (
-    <div style={{ paddingBottom: 20 }}>
+    <div>
+      <h3>Enter a new post</h3>
+
       <Card border='primary'>
         <Card.Body>
           <Form>

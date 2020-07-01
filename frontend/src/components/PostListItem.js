@@ -1,11 +1,10 @@
-import React from 'react'
+import React  from 'react'
 import { useSelector } from 'react-redux'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
-import { TiThumbsUp } from "react-icons/ti"
-import { TiThumbsDown } from "react-icons/ti"
 import { formatTime } from '../Utilities/helperFunctions'
+import { VoteButton } from './VoteButton'
+
 
 export function PostListItem(props) {
 
@@ -20,16 +19,17 @@ export function PostListItem(props) {
             postId: post.id
           }} 
           style={{ textDecoration: 'none' }}>
-          <Card.Title style={{ flex: 1 }}><h5>{post.title}</h5></Card.Title>
-          <p style={{ fontSize: 10 }}>Posted by {post.author} in {formatTime(post.timestamp)}</p>
+          <Card.Title style={{ flex: 1 }}><h4>{post.title}</h4></Card.Title>
+          <p style={{ fontSize: 12 }}>Posted by {post.author} in {formatTime(post.timestamp)}</p>
         </Link>
       </Card.Header>
       <Card.Body>
         <div style={{ display: 'flex', alignContent: 'space-between', alignItems: 'baseline' }}>
           <p>Vote Score: {post.voteScore}</p>
           <div style={{ flex: 1 }} />
-          <Button style={{ marginLeft: 10 }}><TiThumbsUp /></Button>
-          <Button style={{ marginLeft: 10 }}><TiThumbsDown /></Button>
+          <VoteButton
+            id={post.id}
+            type={'post'}/>
         </div>
       </Card.Body>
     </Card>

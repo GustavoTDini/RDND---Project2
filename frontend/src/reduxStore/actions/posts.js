@@ -76,14 +76,13 @@ export function getSinglePost(postId) {
 
 export function voteForPost(postId, vote) {
   return (dispatch) => {
-    dispatch(showLoading())
     _votePost(postId, vote)
       .then((post) => {
         dispatch({
           type: VOTE_POST,
           post,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
