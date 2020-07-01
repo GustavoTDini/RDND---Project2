@@ -11,7 +11,6 @@ export function receiveCategories() {
           type: RECEIVE_CATEGORIES,
           categories,
         })
-      })        
-      .then(dispatch(hideLoading()))
+      }).then(dispatch(hideLoading()))
   }
 }

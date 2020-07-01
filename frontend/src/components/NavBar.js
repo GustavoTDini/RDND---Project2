@@ -15,14 +15,25 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 export function NavBar() {
 
+  
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setSortingType(SORT_METHODS[0].option))
     dispatch(setSortingDirection())
   }, [dispatch])
 
+
+
   const categories = useSelector(state => state.categories)
   const descending = useSelector(state => state.sorting.direction)
+
+  let sortable = null
+  if (window.location.pathname === '/newPost' || window.location.pathname === '/edit') {
+    sortable = false
+  } else {
+    sortable = true
+  }
 
   return (
     <Navbar bg="primary" variant="dark" style={{ marginBottom: 30 }}>
@@ -30,41 +41,43 @@ export function NavBar() {
       <Nav className="mr-auto">
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/newPost">New</Nav.Link>
+        <DropdownButton style={{ marginRight: 20 }} id="dropdown-basic-button" title="Categories">
+          {Array.isArray(categories) && categories.map((category) => (
+            <LinkContainer
+              to={`/${category.path}`}
+              key={category.path}>
+              <Dropdown.Item
+              >
+                {capitalizeString(category.name)}
+              </Dropdown.Item>
+            </LinkContainer>
+          ))}
+        </DropdownButton>
       </Nav>
-      <DropdownButton style={{ marginRight: 20 }} id="dropdown-basic-button" title="Categories">
-        {Array.isArray(categories) && categories.map((category) => (
-          <LinkContainer 
-           to={`/${category.path}`} 
-           key={category.path}>
-          <Dropdown.Item
-            >
-            {capitalizeString(category.name)}
-          </Dropdown.Item>
-          </LinkContainer>
-        ))}
+      {sortable ?
+        <div style={{display:'flex'}}>
+          <DropdownButton style={{ marginRight: 20 }} id="dropdown-filter" title="Sort By">
+            {SORT_METHODS.map((sort) => (
+              <Dropdown.Item
+                key={sort.option}
+                onClick={() => dispatch(setSortingType(sort.option))}
+              >{sort.name}</Dropdown.Item>
+            ))}
+          </DropdownButton>
+          <Button
+            onClick={() => dispatch(setSortingDirection())}
+            style={{ marginRight: 20 }}>
+            {'Direction  '}
+            {descending ?
+              <TiArrowDownOutline /> :
+              <TiArrowUpOutline />}
+          </Button>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-light">Search</Button>
+          </Form>
+        </div> : null}
 
-      </DropdownButton>
-
-    <DropdownButton style={{ marginRight: 20 }} id="dropdown-filter" title="Sort By">
-      {SORT_METHODS.map((sort) => (
-        <Dropdown.Item
-          key={sort.option}
-          onClick={() => dispatch(setSortingType(sort.option))}
-        >{sort.name}</Dropdown.Item>
-      ))}
-    </DropdownButton>
-    <Button
-      onClick={() => dispatch(setSortingDirection())}
-      style={{ marginRight: 20 }}>
-        {'Direction  '}
-      {descending ?
-        <TiArrowDownOutline /> :
-        <TiArrowUpOutline />}
-    </Button>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-light">Search</Button>
-    </Form>
     </Navbar >
   )
 }

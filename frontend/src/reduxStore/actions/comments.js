@@ -1,4 +1,3 @@
-import { formatComment } from '../../Utilities/APIHelpers'
 import { showLoading, hideLoading } from './loading'
 import {
   RECEIVE_COMMENTS_BY_POST,
@@ -35,16 +34,11 @@ export function receivePostComments(postId) {
 export function addComment(body, author, postId) {
   return (dispatch) => {
     dispatch(showLoading())
-    const newPost = formatComment(
-      body,
-      author,
-      postId,
-    )
-    return _addNewComment(newPost)
-      .then(() => {
+    return _addNewComment(body, author, postId)
+      .then((newComment) => {
         dispatch({
           type: ADD_COMMENT,
-          newPost,
+          newComment,
         })
       }).then(dispatch(hideLoading()))
   }

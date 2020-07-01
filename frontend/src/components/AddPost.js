@@ -8,8 +8,17 @@ import { addPost } from '../reduxStore/actions/posts'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { capitalizeString } from '../Utilities/helperFunctions'
+import { Redirect } from 'react-router-dom'
+import { AlertInputModal } from './AlertInputModal'
 
 export function AddPost() {
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [addedNewPost, setAddedNewPost] = useState(false);
+
   const dispatch = useDispatch()
   const [input, setInput] = useState({})
   const [category, setCategory] = useState('react')
@@ -22,11 +31,33 @@ export function AddPost() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(addPost(input.title, input.body, input.author, category))
+    if (input.title === '' || input.title === undefined || input.body === '' || input.body === undefined || input.author === '' || input.author === undefined){
+      handleShow()
+    } else{
+      dispatch(addPost(input.title, input.body, input.author, category))
+      setAddedNewPost(true)
+    }
   }
+
+  if (addedNewPost) {
+    return (
+      <Redirect
+        to={{
+          pathname:'/home' 
+        }}
+      />
+    )
+  }
+
 
   return (
     <div>
+      <AlertInputModal
+      show={show}
+      handleClose={handleClose}
+      handleShow={handleShow}
+      />
+
       <h3>Enter a new post</h3>
 
       <Card border='primary'>

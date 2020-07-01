@@ -10,6 +10,7 @@ import { AddPost } from './AddPost'
 import { PostList } from './PostList'
 import Spinner from 'react-bootstrap/Spinner'
 import { PostDetail } from './PostDetail';
+import { EditPage } from './EditPage';
 
 export function App() {
 
@@ -41,6 +42,7 @@ export function App() {
                     <Route path='/home' component={PostList} />
                     <Route path='/newPost' exact component={AddPost} />
                     <Route path='/post' component={PostDetail} />
+                    <Route path='/edit' component={EditPage}/>
                     {Array.isArray(categories) && categories.map((category) => (
                       <Route path={`/${category.path}`} exact key={category.name}>
                         <PostList category={category.name} />
@@ -48,7 +50,6 @@ export function App() {
                     ))}
 
                   </Switch>
-
                 </Col>}
             </Row>
           </Container>

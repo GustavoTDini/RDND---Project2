@@ -6,16 +6,18 @@ export const _getCommentsByPost = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
 
-export const _addNewComment = (body, author, postId) =>
-  fetch(`${api}/comments`, {
+export const _addNewComment = (body, author, postId) => {
+  return fetch(`${api}/comments`, {
     method: 'POST',
     headers,
-    body: JSON.stringify(formatComment({
+    body: JSON.stringify(formatComment(
       body,
       author,
       postId,
-    }))
+    ))
   }).then(res => res.json())
+}
+
 
 
 export const _getCommentById = (commentId) =>
