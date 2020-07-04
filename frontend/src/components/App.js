@@ -13,15 +13,17 @@ import { PostDetail } from './PostDetail';
 import { EditPage } from './EditPage';
 
 export function App() {
-
   const dispatch = useDispatch()
+
+  const loading = useSelector(state => state.loading)
+  
+  console.log('custon hooks')
+
   useEffect(() => {
     dispatch(receiveCategories())
   }, [dispatch])
 
-  const loading = useSelector(state => state.loading)
   const categories = useSelector(state => state.categories)
-
 
   return (
     <div>
@@ -58,3 +60,5 @@ export function App() {
     </div>
   )
 }
+
+

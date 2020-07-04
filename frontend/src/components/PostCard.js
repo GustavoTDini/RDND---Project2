@@ -6,10 +6,11 @@ import Button from 'react-bootstrap/Button'
 import { VoteButton } from './VoteButton'
 import { formatTime } from '../Utilities/helperFunctions'
 import { DeleteButton } from './DeleteButton'
+import { LinkContainer } from 'react-router-bootstrap'
 
 export function PostCard(props) {
 
-  const post = useSelector(state => state.selectedPost)
+  const post = useSelector(state => state.selectedItem)
 
   return (
     <div style={{ paddingBottom: 20 }}>
@@ -35,11 +36,18 @@ export function PostCard(props) {
         </Card.Body>
         <Card.Footer>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
+            <LinkContainer
+              to={{
+                pathname: `/edit/${post.id}`,
+                id: post.id,
+                type: 'post'
+              }}>
             <Button >Edit</Button>
+            </LinkContainer>
             <div style={{ flex: 1 }} />
             {!props.addNewComment ?
               <Button
-                onClick={() => props.handleAddComment(true)}>New Comment</Button>: null
+                onClick={() => props.handleAddComment(true)}>New Comment</Button> : null
             }
             <div style={{ flex: 1 }} />
             <DeleteButton

@@ -5,10 +5,11 @@ import { VoteButton } from './VoteButton'
 import Button from 'react-bootstrap/Button'
 import { formatTime } from '../Utilities/helperFunctions'
 import { DeleteButton } from './DeleteButton'
+import { LinkContainer } from 'react-router-bootstrap'
 
 export function CommentCard(props) {
-  const selectedPost = useSelector(state => state.selectedPost)
-  const comment = useSelector(state => state.comments[selectedPost.id].find((comment) => comment.id === props.commentId))
+  const selectedItem = useSelector(state => state.selectedItem)
+  const comment = useSelector(state => state.comments[selectedItem.id].find((comment) => comment.id === props.commentId))
 
   return (
     <div style={{ paddingBottom: 20 }}>
@@ -29,7 +30,15 @@ export function CommentCard(props) {
         </Card.Body>
         <Card.Footer>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <Button style={{ marginRight: 10 }}>Edit</Button>
+          <LinkContainer
+            style={{ marginRight: 10 }}
+              to={{
+                pathname: `/edit/${comment.id}`,
+                id: comment.id,
+                type: 'comment'
+              }}>
+            <Button >Edit</Button>
+            </LinkContainer>
             <div style={{ flex: 1 }} />
             <DeleteButton
               id={comment.id}

@@ -6,17 +6,17 @@ import { CommentCard } from './CommentCard'
 
 export function CommentList() {
 
-  const selectedPost = useSelector(state => state.selectedPost)
+  const selectedItem = useSelector(state => state.selectedItem)
 
   const dispatch = useDispatch()
   useEffect(() => {
-      dispatch(receivePostComments(selectedPost.id))
-  }, [dispatch, selectedPost.id])
+      dispatch(receivePostComments(selectedItem.id))
+  }, [dispatch, selectedItem.id])
 
   const sortingType = useSelector(state => state.sorting.sortBy)
   const descending = useSelector(state => state.sorting.direction)
 
-  const comments = useSelector(state => sortPostList(createPostList(state.comments[selectedPost.id]), sortingType, descending))
+  const comments = useSelector(state => sortPostList(createPostList(state.comments[selectedItem.id]), sortingType, descending))
 
   return (
     <div>

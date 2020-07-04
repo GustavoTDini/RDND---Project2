@@ -38,6 +38,8 @@ export function AddComment(props) {
       handleShow={handleShow}
       />
 
+      <h3>Enter a comment for this post</h3>
+
       <Card border='primary'>
         <Card.Body>
           <Form>

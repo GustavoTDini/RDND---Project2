@@ -34,16 +34,13 @@ export const _voteComment = (commentId, vote) =>
     .then(res => res.json())
 
 
-export const _editComment = ({ commentId, body }) =>
+export const _editComment = (commentId, body) =>
   fetch(`${api}/comments/${commentId}`, {
     method: 'PUT',
     headers,
-    body: JSON.stringify(
-      Date.now(),
-      body,
-    )
-      .then(res => res.json())
+    body: JSON.stringify({ body: body })
   })
+  .then(res => res.json())
 
 
 export const _deleteComment = ({ commentId }) => 

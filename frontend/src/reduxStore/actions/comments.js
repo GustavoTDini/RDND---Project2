@@ -1,4 +1,3 @@
-import { showLoading, hideLoading } from './loading'
 import {
   RECEIVE_COMMENTS_BY_POST,
   ADD_COMMENT,
@@ -19,7 +18,6 @@ import {
 
 export function receivePostComments(postId) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _getCommentsByPost(postId)
       .then((comments) => {
         dispatch({
@@ -27,33 +25,31 @@ export function receivePostComments(postId) {
           postId,
           comments,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
 export function addComment(body, author, postId) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _addNewComment(body, author, postId)
       .then((newComment) => {
         dispatch({
           type: ADD_COMMENT,
           newComment,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
 export function getSingleComment(commentId) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _getCommentById(commentId)
       .then((comment) => {
         dispatch({
           type: GET_COMMENT_BY_ID,
           comment,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
@@ -69,28 +65,26 @@ export function voteForComment(commentId, vote) {
   }
 }
 
-export function editPost(commentId, body) {
+export function editComment(commentId, body) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _editComment({ commentId, body })
       .then((comment) => {
         dispatch({
           type: EDIT_COMMENT,
           comment,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
 export function deleteComment(commentId) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _deleteComment({ commentId })
       .then((comment) => {
         dispatch({
           type: DELETE_COMMENT,
           comment,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }

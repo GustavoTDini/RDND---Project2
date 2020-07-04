@@ -4,8 +4,7 @@ export function generateUID () {
   }
   
 export function formatPost ( title, body, author, category ) {
-  console.log(title, body, author, category)
-  const newPost =  {
+  return {
     id: generateUID(),
     timestamp: Date.now(),
     title: title,
@@ -13,8 +12,6 @@ export function formatPost ( title, body, author, category ) {
     author: author,
     category: category,
     }
-    console.log(newPost)
-    return newPost
 }
 
 
@@ -27,5 +24,3 @@ export function formatComment ( body, author, parentId ) {
       parentId: parentId,
       }
   }
-
-  

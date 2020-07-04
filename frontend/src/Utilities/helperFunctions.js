@@ -51,3 +51,30 @@ export function formatTime(timestamp) {
 export function capitalizeString(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
+
+export function loadingArray(isLoading, currentState) {
+  let newArray = currentState
+  console.log(isLoading, currentState)
+  if (Array.isArray(currentState)) {  
+    if (isLoading){
+      let falseIndex = currentState.findIndex((index) => index === false)
+      console.log(falseIndex)
+      newArray[falseIndex] = isLoading
+    } else {
+      let trueIndex = currentState.lastIndexOf(true)
+      console.log(trueIndex)
+    	newArray[trueIndex] = isLoading
+    }
+  } else{
+    newArray = [isLoading, false, false, false, false]
+  }
+  console.log(newArray)
+  return newArray
+}
+
+export function getLoadingStatusFromArray(isLoading) {
+  if (Array.isArray(isLoading)) {
+    let loading = isLoading.includes(true)
+    return loading
+  }
+}

@@ -22,6 +22,3 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const SET_SORTING_TYPE = 'SET_SORTING_TYPE'
 export const SET_SORTING_DIRECTION = 'SET_SORTING_DIRECTION'
 
-// lading actions
-export const SHOW_LOADING = 'SHOW_LOADING'
-export const HIDE_LOADING = 'HIDE_LOADING'

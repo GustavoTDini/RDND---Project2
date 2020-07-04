@@ -29,7 +29,7 @@ export function NavBar() {
   const descending = useSelector(state => state.sorting.direction)
 
   let sortable = null
-  if (window.location.pathname === '/newPost' || window.location.pathname === '/edit') {
+  if (window.location.pathname === '/newPost' || window.location.pathname === '/edit/') {
     sortable = false
   } else {
     sortable = true

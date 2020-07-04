@@ -4,8 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 
 
 export function AlertInputModal(props) {
-  console.log(props)
-
+  
   return (
     <div>
       <Modal show={props.show} onHide={props.handleClose}>

@@ -1,4 +1,3 @@
-import { showLoading, hideLoading } from './loading'
 import {
   RECEIVE_POSTS,
   RECEIVE_POSTS_BY_CATEGORIES,
@@ -21,55 +20,50 @@ import {
 
 export function receivePosts() {
   return (dispatch) => {
-    dispatch(showLoading())
     _getAllPosts()
       .then((posts) => {
         dispatch({
           type: RECEIVE_POSTS,
           posts,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
 export function receivePostsByCategories(categoryName) {
-  console.log(categoryName)
   return (dispatch) => {
-    dispatch(showLoading())
     return _getPostsByCategories(categoryName)
       .then((posts) => {
         dispatch({
           type: RECEIVE_POSTS_BY_CATEGORIES,
           posts,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
 
 export function addPost(title, body, author, category) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _addNewPost(title, body, author, category)
       .then((newPost) => {
         dispatch({
           type: ADD_POST,
           newPost,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
 export function getSinglePost(postId) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _getPostsById(postId)
       .then((post) => {
         dispatch({
           type: GET_POST_BY_ID,
           post,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
@@ -87,27 +81,25 @@ export function voteForPost(postId, vote) {
 
 export function editPost(postId, title, body) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _editPost({ postId, title, body })
       .then((post) => {
         dispatch({
           type: EDIT_POST,
           post,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
 export function deletePost(postId) {
   return (dispatch) => {
-    dispatch(showLoading())
     return _deletePost({ postId })
       .then((post) => {
         dispatch({
           type: DELETE_POST,
           post,
         })
-      }).then(dispatch(hideLoading()))
+      })
   }
 }
 
