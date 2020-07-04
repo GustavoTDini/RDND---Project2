@@ -52,7 +52,7 @@ export function EditButton(props) {
           <Button variant="primary" onClick={() => handleClose()}>
             No
           </Button>
-          <Button variant="primary" onClick={() => handleEdit()}>
+          <Button variant="success" onClick={() => handleEdit()}>
             Confirm
           </Button>
         </Modal.Footer>

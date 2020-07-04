@@ -101,7 +101,7 @@ export function AddPost() {
               
               <Button
                 style={{ flex: 1 }}
-                variant="primary"
+                variant="success"
                 onClick={handleSubmit}>
                 Submit
                 </Button>

@@ -69,7 +69,7 @@ export function AddComment(props) {
               <div style={{ flex: 3 }} />
               <Button 
                 style={{ flex: 1 }} 
-                variant="primary"
+                variant="success"
                 onClick={() => props.handleAddComment(false)}>
                 Cancel
               </Button>

@@ -1,5 +1,5 @@
 import { headers, api } from "../api/readerApi";
-import { formatComment } from "../Utilities/APIHelpers";
+import { formatComment, formatEditComment } from "../Utilities/APIHelpers";
 
 
 export const _getCommentsByPost = (postId) =>
@@ -34,14 +34,13 @@ export const _voteComment = (commentId, vote) =>
     .then(res => res.json())
 
 
-export const _editComment = (commentId, body) =>
+export const _editComment = ({commentId, body}) =>
   fetch(`${api}/comments/${commentId}`, {
     method: 'PUT',
-    headers,
-    body: JSON.stringify({ body: body })
+    headers: headers,
+    body: JSON.stringify(formatEditComment(body))
   })
   .then(res => res.json())
-
 
 export const _deleteComment = ({ commentId }) => 
   fetch(`${api}/comments/${commentId}`, {

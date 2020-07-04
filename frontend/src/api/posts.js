@@ -1,5 +1,5 @@
 import { headers, api } from "../api/readerApi";
-import { formatPost } from "../Utilities/APIHelpers";
+import { formatPost, formatEditPost } from "../Utilities/APIHelpers";
 
 export const _getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
@@ -34,14 +34,11 @@ export const _votePost = (postId, vote) => {
   }).then(res => res.json())
 }
 
-export const _editPost = (postId, title, body) => {
+export const _editPost = ({postId, title, body}) => {
   return fetch(`${api}/posts/${postId}`, {
     method: 'PUT',
     headers,
-    body: JSON.stringify({
-      title: title,
-      body: body,
-    })
+    body: JSON.stringify(formatEditPost(title,body))
   })
   .then(res => res.json())
 }

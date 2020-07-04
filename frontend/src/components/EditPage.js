@@ -10,40 +10,36 @@ import { EditButton } from './EditButton'
 
 export function EditPage(props) {
 
-  const [input, setInput] = useState({})
+  const dispatch = useDispatch()
   const item = useSelector(state => state.selectedItem)
 
-  const dispatch = useDispatch()
+  const [input, setInput] = useState({
+    body: item.body,
+    title: item.title
+  })
+
+  useEffect(() => {
+    if (props.location.type === 'post') {
+      dispatch(getSinglePost(props.location.id))
+    } else if (props.location.type === 'comment'){
+      dispatch(getSingleComment(props.location.id))
+    }
+  }, [dispatch, props.location.id, props.location.type])
 
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
   })
 
-  useEffect(() => {
-    if (!props.location.id) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/home"
-          }}
-        />
-      )
-    }
-
-    if (props.location.type === 'post') {
-      dispatch(getSinglePost(props.location.id))
-    } else {
-      dispatch(getSingleComment(props.location.id))
-    }
-
-    setInput({
-      ...input,
-      body: item.body,
-      title: item.title
-    })
-
-  }, [dispatch, props.location.id])
+  if (!props.location.id) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/home"
+        }}
+      />
+    )
+  }
 
   return (
     <div>

@@ -14,6 +14,13 @@ export function formatPost ( title, body, author, category ) {
     }
 }
 
+export function formatEditPost ( title, body ) {
+  return {
+    title: title,
+    body: body
+    }
+}
+
 
 export function formatComment ( body, author, parentId ) {
   return {
@@ -24,3 +31,10 @@ export function formatComment ( body, author, parentId ) {
       parentId: parentId,
       }
   }
+
+  export function formatEditComment ( body ) {
+    return {
+        timestamp: Date.now(),
+        body: body
+        }
+    }
