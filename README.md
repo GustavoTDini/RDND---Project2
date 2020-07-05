@@ -1,22 +1,65 @@
-# Readable API Server
+# Readable - Optional Project - RDND
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
+This is the optional project for the React Developer Nanodegree for Udacity, to further training in React-Redux
+As for a change in the development, and to keep up-to-date with the new API of React, I have refactores it to use Hooks, and only use functions as components.
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+### React-Hooks
+Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
-## Start Developing
+## Usage
+This project is a List for posts and comments, here you have to option to add new posts, and comment those posts, also vote for the posts you like or not.
 
-To get started developing right away:
+#### Home page
+Here you can view all the posts, and sort it by vote Score, date posted and author name, and search in the posts for some word
 
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
+#### New post page
+In this page you can add a new post, by choosing a Title, body, entering your name, and selecting the category
+
+#### Post Detail Page
+Here you can see all the details of a post, add a new comment, and checking all the comments for it, also you can filter and sort the comments
+
+#### Edit Page (comment and post)
+FOr some existing post or detail - you can alwys edit it
 
 ## API Server
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+
+## Dependencies
+
+### redux
+A Predictable State Container for JS Apps
+
+Page - [https://redux.js.org/](https://redux.js.org/)
+
+### react-redux
+React Redux is the official React binding for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update data.
+
+Page - [https://react-redux.js.org/](https://react-redux.js.org/)
+
+### react-bootstrap
+Rebuilt with React
+React-Bootstrap replaces the Bootstrap JavaScript. Each component has been built from scratch as a true React component,
+
+Page - [https://react-bootstrap.github.io/](https://react-bootstrap.github.io/)
+
+### react-icons
+Include popular icons in your React projects easily with react-icons, which utilizes ES6 imports that allows you to include only the icons that your project is using.
+
+Page - [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/)
+
+### react-highlight
+React component for syntax highlighting using highlight.js
+
+GitHub - [github.com/akiran/react-highlight](github.com/akiran/react-highlight)
+
+### react-router
+Declarative routing for React
+
+GitHub - [https://github.com/ReactTraining/react-router#readme](https://github.com/ReactTraining/react-router#readme)
+
+### react-router-bootstrap
+Integration between React Router v4 and React Bootstrap.
+
+GitHub - [https://github.com/react-bootstrap/react-router-bootstrap](https://github.com/react-bootstrap/react-router-bootstrap)
+
