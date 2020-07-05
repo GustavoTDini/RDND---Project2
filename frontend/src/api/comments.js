@@ -1,7 +1,6 @@
 import { headers, api } from "../api/readerApi";
 import { formatComment, formatEditComment } from "../Utilities/APIHelpers";
 
-
 export const _getCommentsByPost = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
@@ -17,8 +16,6 @@ export const _addNewComment = (body, author, postId) => {
     ))
   }).then(res => res.json())
 }
-
-
 
 export const _getCommentById = (commentId) =>
   fetch(`${api}/comments/${commentId}`, { headers })

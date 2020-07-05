@@ -1,14 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch} from 'react-redux'
-import Card from 'react-bootstrap/Card'
-import { Link } from "react-router-dom"
-import { formatTime } from '../Utilities/helperFunctions'
-import { VoteButton } from './VoteButton'
 import { getSinglePost } from '../reduxStore/actions/posts'
 import { clearSearch } from '../reduxStore/actions/search'
+import { Link } from "react-router-dom"
+import VoteButton from './VoteButton'
+import Card from 'react-bootstrap/Card'
+import { formatTime } from '../Utilities/helperFunctions'
 
 
-export function PostListItem(props) {
+
+
+export default function PostListItem(props) {
 
   const dispatch = useDispatch()
 

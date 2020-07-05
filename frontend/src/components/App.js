@@ -1,27 +1,32 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { receiveCategories } from '../reduxStore/actions/categories'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { NavBar } from './NavBar'
-import { AddPost } from './AddPost'
-import { PostList } from './PostList'
 import Spinner from 'react-bootstrap/Spinner'
-import { PostDetail } from './PostDetail';
-import { EditPage } from './EditPage';
+import NavBar from './NavBar'
+import AddPost from './AddPost'
+import PostList from './PostList'
+import PostDetail from './PostDetail';
+import EditPage from './EditPage';
 
-export function App() {
+export default function App() {
   const dispatch = useDispatch()
 
+  // at start get the categories from the server - to populate the nav and set the category lists
   useEffect(() => {
     dispatch(receiveCategories())
   }, [dispatch])
 
   const categories = useSelector(state => state.categories)
   const loading = useSelector(state => state.loading)
+
+  // check if there´s a selected item to render the details or editing
   const selected = useSelector(state => state.selectedItem)
+
+  // const to prevente sorting and search to render in edit or newPost pages
   const [sortable, setSortable] = useState(true);
 
   return (
@@ -41,8 +46,12 @@ export function App() {
                 </div> :
                 <Col md={{ span: 6, offset: 3 }}>
                   <Switch>
+                    <Route exact path="/">
+                      <Redirect to="/home" />
+                    </Route>
                     <Route
                       path='/home'
+                      default
                       render={() => {
                         setSortable(true)
                         return <PostList />
@@ -53,25 +62,25 @@ export function App() {
                       render={() => {
                         setSortable(false)
                         return <AddPost />
-                      }}/>
+                      }} />
                     <Route
                       path='/post'
                       component={() => {
                         setSortable(true)
-                        return <PostDetail postId={selected.id}/>
-                      }}/>
+                        return <PostDetail postId={selected.id} />
+                      }} />
                     <Route
                       path='/editPost'
                       render={() => {
                         setSortable(false)
-                        return <EditPage id={selected.id} type='post'/>
-                      }}/>
+                        return <EditPage id={selected.id} type='post' />
+                      }} />
                     <Route
                       path='/editComment'
                       render={() => {
                         setSortable(false)
-                        return <EditPage id={selected.id} type='comment'/>
-                      }}/>
+                        return <EditPage id={selected.id} type='comment' />
+                      }} />
                     {Array.isArray(categories) && categories.map((category) => (
                       <Route
                         path={`/${category.path}`} exact
@@ -79,7 +88,7 @@ export function App() {
                         render={() => {
                           setSortable(true);
                           return <PostList category={category.name} />
-                        }}/>
+                        }} />
                     ))}
                   </Switch>
                 </Col>}

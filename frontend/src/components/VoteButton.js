@@ -2,12 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { voteForPost } from '../reduxStore/actions/posts'
 import { voteForComment } from '../reduxStore/actions/comments'
-import { UP_VOTE, DOWN_VOTE } from '../Utilities/constants'
 import { TiThumbsUp, TiThumbsDown } from "react-icons/ti"
 import Button from 'react-bootstrap/Button'
+import { UP_VOTE, DOWN_VOTE } from '../Utilities/constants'
 
-
-export function VoteButton(props) {
+export default function VoteButton(props) {
 
   const dispatch = useDispatch()
 

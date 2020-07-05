@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { setSortingType, setSortingDirection } from '../reduxStore/actions/sorting'
+import { LinkContainer } from 'react-router-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { TiArrowUpOutline, TiArrowDownOutline } from "react-icons/ti"
-import { setSortingType, setSortingDirection } from '../reduxStore/actions/sorting'
+import SearchButon from './SearchButon'
 import { SORT_METHODS } from '../Utilities/constants'
 import { capitalizeString } from '../Utilities/helperFunctions'
-import { LinkContainer } from 'react-router-bootstrap'
-import SearchButon from './SearchButon'
 
-export function NavBar(props) {
+export default function NavBar(props) {
 
   const dispatch = useDispatch()
   useEffect(() => {

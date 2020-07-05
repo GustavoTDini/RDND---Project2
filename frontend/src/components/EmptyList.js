@@ -14,11 +14,7 @@ export default function EmptyList(props) {
       message = 'There are no comments for this post.\nBe the first one to comment!!'
       break
     default:
-
   }
-
-
-
 
   return (
     <div style={{ display: 'flex', marginTop: 20 }}>

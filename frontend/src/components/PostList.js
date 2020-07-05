@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createPostList, sortPostList, capitalizeString, returnSearchedArray} from '../Utilities/helperFunctions'
-import { PostListItem } from './PostListItem'
 import { receivePosts, receivePostsByCategories } from '../reduxStore/actions/posts'
+import PostListItem from './PostListItem'
 import EmptyList from './EmptyList'
+import { createPostList, sortPostList, capitalizeString, returnSearchedArray} from '../Utilities/helperFunctions'
 
-export function PostList(props) {
+export default function PostList(props) {
 
   const dispatch = useDispatch()
   useEffect(() => {

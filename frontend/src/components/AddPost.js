@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addPost } from '../reduxStore/actions/posts'
+import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { addPost } from '../reduxStore/actions/posts'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
+import AlertInputModal from './AlertInputModal'
 import { capitalizeString } from '../Utilities/helperFunctions'
-import { Redirect } from 'react-router-dom'
-import { AlertInputModal } from './AlertInputModal'
 
-export function AddPost() {
+export default function AddPost() {
 
+ //const for the modal to show
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,11 +24,13 @@ export function AddPost() {
   const [category, setCategory] = useState('react')
   const categories = useSelector(state => state.categories)
 
+  // handlechange method for the inputs
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
   })
 
+  // submit method, it tests if any input is blank, otherwise call a dispatch
   const handleSubmit = (e) => {
     e.preventDefault()
     if (input.title === '' || input.title === undefined || input.body === '' || input.body === undefined || input.author === '' || input.author === undefined){
@@ -39,6 +41,7 @@ export function AddPost() {
     }
   }
 
+  // when added a new post - return to home
   if (addedNewPost) {
     return (
       <Redirect
@@ -51,6 +54,7 @@ export function AddPost() {
 
 
   return (
+    // modal for prevente submiting a blank comment
     <div>
       <AlertInputModal
       show={show}
@@ -98,7 +102,6 @@ export function AddPost() {
                 ))}
               </DropdownButton> 
               <div style={{ flex: 1 }} />
-              
               <Button
                 style={{ flex: 1 }}
                 variant="success"

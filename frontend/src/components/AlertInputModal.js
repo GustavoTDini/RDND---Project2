@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
 
-export function AlertInputModal(props) {
-  
+export default function AlertInputModal(props) {
+
+  //Modal to call when adding a new post or comment - to prevent blank inputs
   return (
     <div>
       <Modal show={props.show} onHide={props.handleClose}>

@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
-import { Redirect } from 'react-router-dom'
 import { editPost } from '../reduxStore/actions/posts'
 import { editComment } from '../reduxStore/actions/comments'
+import { Redirect } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
 
-
-export function EditButton(props) {
+export default function EditButton(props) {
 
   const [done, setDone] = useState(false)
   const [show, setShow] = useState(false);

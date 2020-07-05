@@ -2,13 +2,12 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { deletePost } from '../reduxStore/actions/posts'
 import { deleteComment } from '../reduxStore/actions/comments'
+import { Redirect } from 'react-router-dom'
 import { TiTrash } from "react-icons/ti"
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import { Redirect } from 'react-router-dom'
 
-
-export function DeleteButton(props) {
+export default function DeleteButton(props) {
 
   const [show, setShow] = useState(false);
 

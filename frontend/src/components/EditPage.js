@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
+import { useDispatch, useSelector } from 'react-redux'
 import { getSinglePost } from '../reduxStore/actions/posts'
 import { getSingleComment } from '../reduxStore/actions/comments'
-import { EditButton } from './EditButton'
+import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
+import EditButton from './EditButton'
 
-export function EditPage(props) {
+export default function EditPage(props) {
 
   const dispatch = useDispatch()
   const item = useSelector(state => state.selectedItem)

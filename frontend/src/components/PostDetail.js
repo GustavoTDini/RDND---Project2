@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { PostCard } from './PostCard'
-import { CommentList } from './CommentList'
-import { AddComment } from './AddComment'
+import PostCard from './PostCard'
+import CommentList from './CommentList'
+import AddComment from './AddComment'
 
-export function PostDetail(props) {
+export default function PostDetail(props) {
 
   const [addNewComment, setAddNewComment] = useState(false)
 

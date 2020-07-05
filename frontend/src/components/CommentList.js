@@ -1,11 +1,11 @@
 import React, {useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createPostList, sortPostList, returnSearchedArray } from '../Utilities/helperFunctions'
 import { receivePostComments } from '../reduxStore/actions/comments'
-import { CommentCard } from './CommentCard'
+import CommentCard from './CommentCard'
 import EmptyList from './EmptyList'
+import { createPostList, sortPostList, returnSearchedArray } from '../Utilities/helperFunctions'
 
-export function CommentList() {
+export default function CommentList() {
 
   const selectedItem = useSelector(state => state.selectedItem)
 

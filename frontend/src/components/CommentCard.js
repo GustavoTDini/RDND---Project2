@@ -1,17 +1,21 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Card from 'react-bootstrap/Card'
-import { VoteButton } from './VoteButton'
-import Button from 'react-bootstrap/Button'
-import { formatTime } from '../Utilities/helperFunctions'
-import { DeleteButton } from './DeleteButton'
 import { LinkContainer } from 'react-router-bootstrap'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import DeleteButton from './DeleteButton'
+import VoteButton from './VoteButton'
+import { formatTime } from '../Utilities/helperFunctions'
 
-export function CommentCard(props) {
+export default function CommentCard(props) {
+  // component to show data of the comment, has options to edit or delete
+
+  // get all the necessary elements - the current selected post / all the comments and the search string to highlight
   const selectedItem = useSelector(state => state.selectedItem)
   const comment = useSelector(state => state.comments[selectedItem.id].find((comment) => comment.id === props.commentId))
   const searchString = useSelector(state => state.search)
 
+  // react highlight - a library used to highlight the searched string
   var Highlight = require('react-highlighter');
 
   return (
@@ -31,8 +35,7 @@ export function CommentCard(props) {
               <Highlight
                 search={searchString}
                 matchElement='span'
-                matchStyle={{ textDecoration: "underline", background: 'yellow' }}
-              >
+                matchStyle={{ textDecoration: "underline", background: 'yellow' }}>
                 {comment.author}
               </Highlight>
               {" in "}{formatTime(comment.timestamp)}</p>
@@ -44,7 +47,6 @@ export function CommentCard(props) {
                 type={'comment'} />
             </div>
           </div>
-
         </Card.Body>
         <Card.Footer>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>

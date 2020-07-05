@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
+import { addComment } from '../reduxStore/actions/comments'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { addComment } from '../reduxStore/actions/comments'
-import { AlertInputModal } from './AlertInputModal'
+import AlertInputModal from './AlertInputModal'
 
-export function AddComment(props) {
-
+export default function AddComment(props) {
+  //const for the modal to show
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -15,11 +15,13 @@ export function AddComment(props) {
   const dispatch = useDispatch()
   const [input, setInput] = useState({})
 
+  // handlechange method for the inputs
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
   })
 
+  // submit method, it tests if any input is blank, otherwise call a dispatch
   const handleSubmit = (e) => {
     e.preventDefault()
     if (input.body === '' || input.body === undefined || input.author === '' || input.author === undefined){
@@ -31,6 +33,7 @@ export function AddComment(props) {
   }
 
   return (
+    // modal for prevente submiting a blank comment
     <div style={{ paddingBottom: 20 }}>
       <AlertInputModal
       show={show}

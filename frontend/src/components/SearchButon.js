@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { setSearch, clearSearch } from '../reduxStore/actions/search'
 import { useDispatch, useSelector } from 'react-redux'
+import { setSearch, clearSearch } from '../reduxStore/actions/search'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 

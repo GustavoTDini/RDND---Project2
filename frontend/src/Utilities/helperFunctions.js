@@ -51,29 +51,6 @@ export function capitalizeString(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
-export function loadingArray(isLoading, currentState) {
-  let newArray = currentState
-  if (Array.isArray(currentState)) {
-    if (isLoading) {
-      let falseIndex = currentState.findIndex((index) => index === false)
-      newArray[falseIndex] = isLoading
-    } else {
-      let trueIndex = currentState.lastIndexOf(true)
-      newArray[trueIndex] = isLoading
-    }
-  } else {
-    newArray = [isLoading, false, false, false, false]
-  }
-  return newArray
-}
-
-export function getLoadingStatusFromArray(isLoading) {
-  if (Array.isArray(isLoading)) {
-    let loading = isLoading.includes(true)
-    return loading
-  }
-}
-
 export function returnSearchedArray(searchArray, searchString) {
   let newArray = searchArray
   if (searchString !== '') {
@@ -86,13 +63,8 @@ export function returnSearchedArray(searchArray, searchString) {
 
     newArray = [...authorSearch, ...bodySearch, ...titleSearch]
 
-    newArray =  [...new Set(newArray)]
+    newArray = [...new Set(newArray)]
   }
-
-  console.log(newArray)
-
   return newArray
-
-
 }
 

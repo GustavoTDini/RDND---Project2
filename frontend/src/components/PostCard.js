@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import Media from 'react-bootstrap/Media'
 import Button from 'react-bootstrap/Button'
-import { VoteButton } from './VoteButton'
-import { formatTime } from '../Utilities/helperFunctions'
-import { DeleteButton } from './DeleteButton'
 import { LinkContainer } from 'react-router-bootstrap'
+import VoteButton from './VoteButton'
+import DeleteButton from './DeleteButton'
+import { formatTime } from '../Utilities/helperFunctions'
 
-export function PostCard(props) {
+export default function PostCard(props) {
 
   const post = useSelector(state => state.selectedItem)
 
