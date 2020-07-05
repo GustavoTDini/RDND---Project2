@@ -18,11 +18,7 @@ export function CommentList() {
   const descending = useSelector(state => state.sorting.direction)
   const searchString = useSelector(state => state.search)
 
-  let comments = useSelector(state => sortPostList(createPostList(state.comments[selectedItem.id]), sortingType, descending))
-
-  if (searchString !== ''){
-    comments = returnSearchedArray(comments, searchString)
-  }
+  const comments = useSelector(state => returnSearchedArray(sortPostList(createPostList(state.comments[selectedItem.id]), sortingType, descending), searchString))
 
   if (comments.length === 0){
     if (searchString !== ''){

@@ -1,15 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom"
 import { formatTime } from '../Utilities/helperFunctions'
 import { VoteButton } from './VoteButton'
+import { getSinglePost } from '../reduxStore/actions/posts'
+import { clearSearch } from '../reduxStore/actions/search'
 
 
 export function PostListItem(props) {
 
+  const dispatch = useDispatch()
+
   const post = useSelector(state => state.posts.find((post) => post.id === props.postId))
   const searchString = useSelector(state => state.search)
+
+  const handleGoToDetails = () => {
+    dispatch(clearSearch())
+    dispatch(getSinglePost(post.id))
+  }
 
   var Highlight = require('react-highlighter');
 
@@ -17,18 +26,15 @@ export function PostListItem(props) {
     <Card border='primary' style={{ marginBottom: 30, marginTop: 30 }}>
       <Card.Header>
         <Link
-          to={{
-            pathname: `/post/${post.id}`,
-            postId: post.id
-          }}
+          onClick={()=>handleGoToDetails()}
+          to={`/post/${post.id}`}
           style={{ textDecoration: 'none' }}>
           <Card.Title style={{ flex: 1 }}>
             <h4>
               <Highlight
                 search={searchString}
                 matchElement='span'
-                matchStyle={{ textDecoration: "underline", background:'yellow' }}
-                >
+                matchStyle={{ textDecoration: "underline", background:'yellow' }}>
                 {post.title}
               </Highlight>
             </h4>

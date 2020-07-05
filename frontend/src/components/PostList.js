@@ -7,7 +7,6 @@ import EmptyList from './EmptyList'
 
 export function PostList(props) {
 
-
   const dispatch = useDispatch()
   useEffect(() => {
     if (props.category){
@@ -21,11 +20,8 @@ export function PostList(props) {
   const descending = useSelector(state => state.sorting.direction)
   const searchString = useSelector(state => state.search)
 
-  let posts = useSelector(state => sortPostList(createPostList(state.posts), sortingType, descending))
+  const posts = useSelector(state => returnSearchedArray(sortPostList(createPostList(state.posts), sortingType, descending), searchString))
 
-  if (searchString !== ''){
-    posts = returnSearchedArray(posts, searchString)
-  }
 
   if (posts.length === 0){
     return(

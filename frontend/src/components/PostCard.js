@@ -37,11 +37,8 @@ export function PostCard(props) {
         <Card.Footer>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
             <LinkContainer
-              to={{
-                pathname: `/edit/${post.id}`,
-                id: post.id,
-                type: 'post'
-              }}>
+            style={{ marginRight: 10 }}
+            to={`/editPost/${post.id}`}>
               <Button >Edit</Button>
             </LinkContainer>
             <div style={{ flex: 2 }} />

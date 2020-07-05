@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -12,7 +12,7 @@ import { capitalizeString } from '../Utilities/helperFunctions'
 import { LinkContainer } from 'react-router-bootstrap'
 import SearchButon from './SearchButon'
 
-export function NavBar() {
+export function NavBar(props) {
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -22,23 +22,6 @@ export function NavBar() {
 
   const categories = useSelector(state => state.categories)
   const descending = useSelector(state => state.sorting.direction)
-
-  const [sortable, setSortable] = useState(true)
-  const [path, setPath] = useState(window.location.pathname)
-
-
-  useEffect(() => {
-    setPath(window.location.pathname)
-    if (path === '/newPost' || path === '/edit/') {
-      console.log(path)
-      setSortable(false)
-    } else {
-      console.log(path)
-      setSortable(true)
-    }
-  }, [path, sortable])
-
-
 
   return (
     <Navbar bg="primary" variant="dark" style={{ marginBottom: 30 }}>
@@ -58,7 +41,7 @@ export function NavBar() {
           ))}
         </DropdownButton>
       </Nav>
-      {sortable ?
+      {props.sortable ?
         <div style={{ display: 'flex' }}>
           <DropdownButton style={{ marginRight: 20 }} id="dropdown-filter" title="Sort By">
             {SORT_METHODS.map((sort) => (

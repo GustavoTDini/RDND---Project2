@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import { getSinglePost } from '../reduxStore/actions/posts'
 import { getSingleComment } from '../reduxStore/actions/comments'
-import { Redirect } from 'react-router-dom'
 import { EditButton } from './EditButton'
 
 export function EditPage(props) {
@@ -19,35 +18,25 @@ export function EditPage(props) {
   })
 
   useEffect(() => {
-    if (props.location.type === 'post') {
-      dispatch(getSinglePost(props.location.id))
-    } else if (props.location.type === 'comment'){
-      dispatch(getSingleComment(props.location.id))
+    if (props.type === 'post') {
+      dispatch(getSinglePost(props.id))
+    } else if (props.type === 'comment'){
+      dispatch(getSingleComment(props.id))
     }
-  }, [dispatch, props.location.id, props.location.type])
+  }, [dispatch, props.id, props.type])
 
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
   })
 
-  if (!props.location.id) {
-    return (
-      <Redirect
-        to={{
-          pathname: "/home"
-        }}
-      />
-    )
-  }
-
   return (
     <div>
-      <h3>Edit your {props.location.type}</h3>
+      <h3>Edit your {props.type}</h3>
       <Card border='primary'>
         <Card.Body>
           <Form>
-            {(props.location.type === 'post') &&
+            {(props.type === 'post') &&
               <Form.Group>
                 <Form.Label>Title</Form.Label>
                 <Form.Control
@@ -71,8 +60,8 @@ export function EditPage(props) {
               <EditButton
                 body = {input.body}
                 title = {input.title}
-                type = {props.location.type}
-                id = {props.location.id}
+                type = {props.type}
+                id = {props.id}
                 style={{ flex: 1 }}
                 variant="primary">
                   Edit

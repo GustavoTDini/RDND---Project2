@@ -23,8 +23,7 @@ export function CommentCard(props) {
               <Highlight
                 search={searchString}
                 matchElement='span'
-                matchStyle={{ textDecoration: "underline", background: 'yellow' }}
-              >
+                matchStyle={{ textDecoration: "underline", background: 'yellow' }}>
                 {comment.body}
               </Highlight>
             </h5>
@@ -51,11 +50,7 @@ export function CommentCard(props) {
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
             <LinkContainer
               style={{ marginRight: 10 }}
-              to={{
-                pathname: `/edit/${comment.id}`,
-                id: comment.id,
-                type: 'comment'
-              }}>
+              to={`/editComment/${comment.id}`}>
               <Button >Edit</Button>
             </LinkContainer>
             <div style={{ flex: 1 }} />
