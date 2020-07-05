@@ -22,3 +22,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const SET_SORTING_TYPE = 'SET_SORTING_TYPE'
 export const SET_SORTING_DIRECTION = 'SET_SORTING_DIRECTION'
 
+// search actions
+export const SET_SEARCH = 'SET_SEARCH'
+export const CLEAR_SEARCH = 'CLEAR_SEARCH'
+

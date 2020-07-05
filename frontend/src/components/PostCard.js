@@ -42,20 +42,24 @@ export function PostCard(props) {
                 id: post.id,
                 type: 'post'
               }}>
-            <Button >Edit</Button>
+              <Button >Edit</Button>
             </LinkContainer>
-            <div style={{ flex: 1 }} />
-            {!props.addNewComment ?
-              <Button
-                onClick={() => props.handleAddComment(true)}>New Comment</Button> : null
-            }
-            <div style={{ flex: 1 }} />
+            <div style={{ flex: 2 }} />
             <DeleteButton
               id={post.id}
               type={'post'} />
           </div>
         </Card.Footer>
       </Card>
+      {!props.addNewComment ?
+        <div style={{display: 'flex',marginTop:20}}>
+          <Button
+            style={{margin:'auto'}}
+            onClick={() => props.handleAddComment(true)}>New Comment
+          </Button>
+        </div>
+        : null
+      }
     </div>
   )
 }

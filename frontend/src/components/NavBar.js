@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -12,10 +10,9 @@ import { setSortingType, setSortingDirection } from '../reduxStore/actions/sorti
 import { SORT_METHODS } from '../Utilities/constants'
 import { capitalizeString } from '../Utilities/helperFunctions'
 import { LinkContainer } from 'react-router-bootstrap'
+import SearchButon from './SearchButon'
 
 export function NavBar() {
-
-  
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -23,17 +20,25 @@ export function NavBar() {
     dispatch(setSortingDirection())
   }, [dispatch])
 
-
-
   const categories = useSelector(state => state.categories)
   const descending = useSelector(state => state.sorting.direction)
 
-  let sortable = null
-  if (window.location.pathname === '/newPost' || window.location.pathname === '/edit/') {
-    sortable = false
-  } else {
-    sortable = true
-  }
+  const [sortable, setSortable] = useState(true)
+  const [path, setPath] = useState(window.location.pathname)
+
+
+  useEffect(() => {
+    setPath(window.location.pathname)
+    if (path === '/newPost' || path === '/edit/') {
+      console.log(path)
+      setSortable(false)
+    } else {
+      console.log(path)
+      setSortable(true)
+    }
+  }, [path, sortable])
+
+
 
   return (
     <Navbar bg="primary" variant="dark" style={{ marginBottom: 30 }}>
@@ -46,8 +51,7 @@ export function NavBar() {
             <LinkContainer
               to={`/${category.path}`}
               key={category.path}>
-              <Dropdown.Item
-              >
+              <Dropdown.Item>
                 {capitalizeString(category.name)}
               </Dropdown.Item>
             </LinkContainer>
@@ -55,7 +59,7 @@ export function NavBar() {
         </DropdownButton>
       </Nav>
       {sortable ?
-        <div style={{display:'flex'}}>
+        <div style={{ display: 'flex' }}>
           <DropdownButton style={{ marginRight: 20 }} id="dropdown-filter" title="Sort By">
             {SORT_METHODS.map((sort) => (
               <Dropdown.Item
@@ -72,12 +76,8 @@ export function NavBar() {
               <TiArrowDownOutline /> :
               <TiArrowUpOutline />}
           </Button>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-light">Search</Button>
-          </Form>
+          <SearchButon/>
         </div> : null}
-
     </Navbar >
   )
 }

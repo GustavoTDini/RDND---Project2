@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import { Link } from "react-router-dom"
@@ -9,18 +9,39 @@ import { VoteButton } from './VoteButton'
 export function PostListItem(props) {
 
   const post = useSelector(state => state.posts.find((post) => post.id === props.postId))
+  const searchString = useSelector(state => state.search)
+
+  var Highlight = require('react-highlighter');
 
   return (
     <Card border='primary' style={{ marginBottom: 30, marginTop: 30 }}>
       <Card.Header>
-        <Link 
+        <Link
           to={{
-            pathname:`/post/${post.id}`, 
+            pathname: `/post/${post.id}`,
             postId: post.id
-          }} 
+          }}
           style={{ textDecoration: 'none' }}>
-          <Card.Title style={{ flex: 1 }}><h4>{post.title}</h4></Card.Title>
-          <p style={{ fontSize: 12 }}>Posted by {post.author} in {formatTime(post.timestamp)}</p>
+          <Card.Title style={{ flex: 1 }}>
+            <h4>
+              <Highlight
+                search={searchString}
+                matchElement='span'
+                matchStyle={{ textDecoration: "underline", background:'yellow' }}
+                >
+                {post.title}
+              </Highlight>
+            </h4>
+          </Card.Title>
+          <p style={{ fontSize: 12 }}>{"Posted by "}
+          <Highlight
+                search={searchString}
+                matchElement='span'
+                matchStyle={{ textDecoration: "underline", background:'yellow' }}
+                >
+                {post.author}
+              </Highlight> 
+              {" in "}{formatTime(post.timestamp)}</p>
         </Link>
       </Card.Header>
       <Card.Body>
@@ -29,7 +50,7 @@ export function PostListItem(props) {
           <div style={{ flex: 1 }} />
           <VoteButton
             id={post.id}
-            type={'post'}/>
+            type={'post'} />
         </div>
       </Card.Body>
     </Card>

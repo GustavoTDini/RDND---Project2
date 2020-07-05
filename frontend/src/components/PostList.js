@@ -1,10 +1,12 @@
-import React, {useEffect } from 'react'
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createPostList, sortPostList, capitalizeString} from '../Utilities/helperFunctions'
+import { createPostList, sortPostList, capitalizeString, returnSearchedArray} from '../Utilities/helperFunctions'
 import { PostListItem } from './PostListItem'
 import { receivePosts, receivePostsByCategories } from '../reduxStore/actions/posts'
+import EmptyList from './EmptyList'
 
 export function PostList(props) {
+
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -17,8 +19,20 @@ export function PostList(props) {
 
   const sortingType = useSelector(state => state.sorting.sortBy)
   const descending = useSelector(state => state.sorting.direction)
+  const searchString = useSelector(state => state.search)
 
-  const posts = useSelector(state => sortPostList(createPostList(state.posts), sortingType, descending))
+  let posts = useSelector(state => sortPostList(createPostList(state.posts), sortingType, descending))
+
+  if (searchString !== ''){
+    posts = returnSearchedArray(posts, searchString)
+  }
+
+  if (posts.length === 0){
+    return(
+      <EmptyList 
+        type="posts"/>
+    )
+  }
   
   return (
     <div>

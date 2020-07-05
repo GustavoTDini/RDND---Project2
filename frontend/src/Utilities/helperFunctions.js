@@ -32,7 +32,6 @@ export function sortPostList(postList, sort, direction) {
   }
 }
 
-
 export function formatTime(timestamp) {
   const date = new Date(timestamp)
   var options = {
@@ -54,21 +53,17 @@ export function capitalizeString(string) {
 
 export function loadingArray(isLoading, currentState) {
   let newArray = currentState
-  console.log(isLoading, currentState)
   if (Array.isArray(currentState)) {  
     if (isLoading){
       let falseIndex = currentState.findIndex((index) => index === false)
-      console.log(falseIndex)
       newArray[falseIndex] = isLoading
     } else {
       let trueIndex = currentState.lastIndexOf(true)
-      console.log(trueIndex)
     	newArray[trueIndex] = isLoading
     }
   } else{
     newArray = [isLoading, false, false, false, false]
   }
-  console.log(newArray)
   return newArray
 }
 
@@ -78,3 +73,18 @@ export function getLoadingStatusFromArray(isLoading) {
     return loading
   }
 }
+
+export function returnSearchedArray(searchArray, searchString) {
+  let titleSearch = []
+  if (searchArray[0].title){
+    titleSearch = searchArray.filter((item) => item.title.includes(searchString))
+  }
+  const bodySearch = searchArray.filter((item) => item.body.includes(searchString))
+  const authorSearch = searchArray.filter((item) => item.author.includes(searchString))
+
+  const newArray = [...authorSearch, ...bodySearch, ...titleSearch]
+
+  return [...new Set(newArray)]
+
+}
+

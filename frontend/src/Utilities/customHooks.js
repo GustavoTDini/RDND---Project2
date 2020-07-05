@@ -7,9 +7,7 @@ export function useDispatchWithLoading(dispatchedAction, data){
 
   const loading = useSelector(state => state.loading)
   
-
   dispatch(showLoading)
-  console.log('custon hooks')
 
   useEffect(() => {
     dispatch(showLoading())

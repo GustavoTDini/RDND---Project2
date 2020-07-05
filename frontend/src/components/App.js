@@ -16,8 +16,6 @@ export function App() {
   const dispatch = useDispatch()
 
   const loading = useSelector(state => state.loading)
-  
-  console.log('custon hooks')
 
   useEffect(() => {
     dispatch(receiveCategories())

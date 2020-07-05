@@ -1,8 +1,9 @@
 import React, {useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createPostList, sortPostList } from '../Utilities/helperFunctions'
+import { createPostList, sortPostList, returnSearchedArray } from '../Utilities/helperFunctions'
 import { receivePostComments } from '../reduxStore/actions/comments'
 import { CommentCard } from './CommentCard'
+import EmptyList from './EmptyList'
 
 export function CommentList() {
 
@@ -15,8 +16,26 @@ export function CommentList() {
 
   const sortingType = useSelector(state => state.sorting.sortBy)
   const descending = useSelector(state => state.sorting.direction)
+  const searchString = useSelector(state => state.search)
 
-  const comments = useSelector(state => sortPostList(createPostList(state.comments[selectedItem.id]), sortingType, descending))
+  let comments = useSelector(state => sortPostList(createPostList(state.comments[selectedItem.id]), sortingType, descending))
+
+  if (searchString !== ''){
+    comments = returnSearchedArray(comments, searchString)
+  }
+
+  if (comments.length === 0){
+    if (searchString !== ''){
+          return(
+      <EmptyList 
+        type="comments"/>
+    )} else {
+      return(
+        <EmptyList 
+          type="emptyComments"/>
+      )
+    }
+  }
 
   return (
     <div>
