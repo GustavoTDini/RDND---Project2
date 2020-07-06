@@ -8,14 +8,17 @@ import EditButton from './EditButton'
 
 export default function EditPage(props) {
 
+
   const dispatch = useDispatch()
   const item = useSelector(state => state.selectedItem)
 
+  // const to handle the inputs
   const [input, setInput] = useState({
     body: item.body,
     title: item.title
   })
 
+  // this useEffect control the selecteditem on the store - it can be a post or a comment
   useEffect(() => {
     if (props.type === 'post') {
       dispatch(getSinglePost(props.id))
@@ -24,6 +27,7 @@ export default function EditPage(props) {
     }
   }, [dispatch, props.id, props.type])
 
+  // function to hold the input change to make this a controlled component
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
@@ -35,6 +39,7 @@ export default function EditPage(props) {
       <Card border='primary'>
         <Card.Body>
           <Form>
+            {/* This will only show if the selected item is a post - comments have no title*/}
             {(props.type === 'post') &&
               <Form.Group>
                 <Form.Label>Title</Form.Label>

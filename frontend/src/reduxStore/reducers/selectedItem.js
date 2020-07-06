@@ -9,7 +9,7 @@ import {
   EDIT_COMMENT
 } from '../actionsTypes'
 
-
+// this store has mixed actions of posts and comments to handle the item that is now used
 export default function posts(state = {}, action) {
   switch (action.type) {
     case ADD_POST:

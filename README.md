@@ -63,3 +63,8 @@ Integration between React Router v4 and React Bootstrap.
 
 GitHub - [https://github.com/react-bootstrap/react-router-bootstrap](https://github.com/react-bootstrap/react-router-bootstrap)
 
+### redux-thunk
+Thunk middleware for Redux.
+
+GitHub - [https://github.com/reduxjs/redux-thunk](https://github.com/reduxjs/redux-thunk)
+

@@ -15,6 +15,7 @@ import {
   DELETE_COMMENT
 } from '../actionsTypes'
 
+// every time those action finish, meaning the API is sucess - the loading is set to false
 export default function loading(state = true, action) {
   switch (action.type) {
     case RECEIVE_CATEGORIES:

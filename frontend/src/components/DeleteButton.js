@@ -9,15 +9,17 @@ import Modal from 'react-bootstrap/Modal'
 
 export default function DeleteButton(props) {
 
+  const dispatch = useDispatch()
+
+  //const for the modal to show that confirm the deletion
   const [show, setShow] = useState(false);
-
-  const [returnHome, setReturnHome] = useState(false)
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const dispatch = useDispatch()
+  // variable to control the return to home only if deleting a post
+  const [returnHome, setReturnHome] = useState(false)
 
+  // function to control the deletion of a post or comment
   const handleDelete = () => {
     if (props.type === 'post') {
       dispatch(deletePost(props.id))
@@ -28,6 +30,7 @@ export default function DeleteButton(props) {
     handleClose()
   }
 
+  // check if return home is true to redirect to home
   if(returnHome){
     return (
       <Redirect

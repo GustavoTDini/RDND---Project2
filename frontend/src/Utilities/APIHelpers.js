@@ -1,9 +1,10 @@
 
-export function generateUID () {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-  }
-  
-export function formatPost ( title, body, author, category ) {
+export function generateUID() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
+// format post for the add API
+export function formatPost(title, body, author, category) {
   return {
     id: generateUID(),
     timestamp: Date.now(),
@@ -11,30 +12,32 @@ export function formatPost ( title, body, author, category ) {
     body: body,
     author: author,
     category: category,
-    }
+  }
 }
 
-export function formatEditPost ( title, body ) {
+// format post for the edit API
+export function formatEditPost(title, body) {
   return {
     title: title,
     body: body
-    }
+  }
 }
 
-
-export function formatComment ( body, author, parentId ) {
+// format comment for the add API
+export function formatComment(body, author, parentId) {
   return {
-      id: generateUID(),
-      timestamp: Date.now(),
-      body: body,
-      author: author,
-      parentId: parentId,
-      }
+    id: generateUID(),
+    timestamp: Date.now(),
+    body: body,
+    author: author,
+    parentId: parentId,
   }
+}
 
-  export function formatEditComment ( body ) {
-    return {
-        timestamp: Date.now(),
-        body: body
-        }
-    }
+// format comment for the edit API
+export function formatEditComment(body) {
+  return {
+    timestamp: Date.now(),
+    body: body
+  }
+}

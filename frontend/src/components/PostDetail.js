@@ -5,6 +5,7 @@ import AddComment from './AddComment'
 
 export default function PostDetail(props) {
 
+  // handle the showing of the addcomment component
   const [addNewComment, setAddNewComment] = useState(false)
 
   return (
@@ -17,7 +18,8 @@ export default function PostDetail(props) {
           parentId ={props.postId}
           handleAddComment={setAddNewComment}/> :
         null}
-        <CommentList />
+        <CommentList 
+         addingComment = {addNewComment}/>
     </div>
   )
 }
