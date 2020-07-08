@@ -7,18 +7,22 @@ import Form from 'react-bootstrap/Form'
 export default function SearchButon() {
 
   const dispatch = useDispatch()
+
   const search = useSelector(state => state.search)
 
   const [searchString, setSearchString] = useState(search)
 
+  // controled component for the search
   const handleSearchChange = (e) => setSearchString(
     e.currentTarget.value
   )
 
+  // set the current search
   const handleSetSearch = () => {
     dispatch(setSearch(searchString))
   }
 
+  // clear the search and the input
   const handleClearSearch = () => {
     dispatch(clearSearch())
     setSearchString('')
@@ -33,6 +37,7 @@ export default function SearchButon() {
           className="mr-sm-2"
           value = {searchString}
           onChange={(e) => handleSearchChange(e)}/>
+          {/* the button changes dependig on the function*/}
           {search === ''?
                   <Button
                   variant="outline-light"

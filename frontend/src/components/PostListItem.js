@@ -9,20 +9,33 @@ import DeleteButton from './DeleteButton'
 import EditPageButton from './EditPageButton'
 import { formatTime } from '../Utilities/helperFunctions'
 
+<<<<<<< HEAD
 var Highlight = require('react-highlighter');
 
+=======
+>>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
 export default function PostListItem(props) {
 
   const dispatch = useDispatch()
 
+  // get the current post from the store  
   const post = useSelector(state => state.posts.find((post) => post.id === props.postId))
+  // get the search string from the store
   const searchString = useSelector(state => state.search)
 
+  // when selecting a post - set it to selected item and clear the search
   const handleGoToDetails = () => {
     dispatch(clearSearch())
     dispatch(getSinglePost(post.id))
   }
+<<<<<<< HEAD
   
+=======
+
+  // react highlight - a library used to highlight the searched string
+  var Highlight = require('react-highlighter');
+
+>>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
   return (
     <Card border='primary' style={{ marginBottom: 30, marginTop: 30 }}>
       <Link to={{

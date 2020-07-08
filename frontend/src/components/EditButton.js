@@ -10,19 +10,23 @@ import { getSinglePost } from '../reduxStore/actions/posts'
 export default function EditButton(props) {
   console.log(props)
 
-  const [done, setDone] = useState(false)
-  const [show, setShow] = useState(false);
   const dispatch = useDispatch()
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const [show, setShow] = useState(false)
+  
+  // const to control the return to home
+  const [done, setDone] = useState(false)
 
+
+  //function to handle the confirmation of the editing
   const handleEdit = () => {
     if (props.type === 'post') {
       dispatch(editPost(props.id, props.title, props.body))
     } else
       dispatch(editComment(props.id, props.body))
-    setDone(true)
+      setDone(true)
   }
 
   if (done) {
@@ -51,6 +55,8 @@ export default function EditButton(props) {
         Edit
       </Button>
 
+      {/* modal to control the confirmation of editing - cancel returns to home without editing, 
+      no return to editing and confirm handle the dispatch to edit the item */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>Have you done editing this {props.type}</Modal.Body>
         <Modal.Footer>

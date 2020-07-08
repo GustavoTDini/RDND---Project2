@@ -10,6 +10,7 @@ import EditPageButton from './EditPageButton'
 
 export default function PostCard(props) {
 
+  // get the selected post
   const post = useSelector(state => state.selectedItem)
 
   return (

@@ -35,6 +35,7 @@ export default function App() {
             sortable={sortable} />
           <Container fluid>
             <Row>
+              {/*test if the loading in the store is true - to show a loading spinner*/}
               {loading ?
                 <div style={{ display: 'flex-col', justifyContent: 'center', alignItems: 'center', margin: 'auto' }}>
                   <div style={{ margin: 'auto', display: 'table' }}>

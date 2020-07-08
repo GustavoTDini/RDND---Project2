@@ -14,6 +14,7 @@ import { capitalizeString } from '../Utilities/helperFunctions'
 
 export default function NavBar(props) {
 
+  // set the initial sorting methods
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setSortingType(SORT_METHODS[0].option))

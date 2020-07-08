@@ -6,13 +6,14 @@ import EditButton from './EditButton'
 
 export default function EditPage() {
 
-  // corrected teh edit page, usig location, it will not use the store to get the data, I was getting async errors as pointed
+  // corrected the edit page, using location, it will not use the store to get the data, I was getting async errors as pointed
   const location = useLocation()
   const [input, setInput] = useState({
     body: '',
     title: ''
   })
 
+  // this useEffect control the selecteditem on the store - it can be a post or a comment
   useEffect(() => {
     if (location.item) {
       setInput({
@@ -30,6 +31,7 @@ export default function EditPage() {
     )
   }
 
+  // function to hold the input change to make this a controlled component
   const handleInputChange = (e) => setInput({
     ...input,
     [e.currentTarget.name]: e.currentTarget.value
@@ -41,7 +43,12 @@ export default function EditPage() {
       <Card border='primary'>
         <Card.Body>
           <Form>
+<<<<<<< HEAD
             {(location.type === 'post') &&
+=======
+            {/* This will only show if the selected item is a post - comments have no title*/}
+            {(props.type === 'post') &&
+>>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
               <Form.Group>
                 <Form.Label>Title</Form.Label>
                 <Form.Control

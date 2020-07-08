@@ -10,6 +10,7 @@ export default function VoteButton(props) {
 
   const dispatch = useDispatch()
 
+  // handle the voting for post or comment - vote is the constante to control if is up or down
   const handleVote = (vote) => {
     if (props.type === 'post') {
       dispatch(voteForPost(props.id, vote))

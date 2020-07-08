@@ -1,3 +1,4 @@
+// function to create a array for the posts to iterate in the view
 export function createPostList(postList) {
   let arrayList = []
   for (let index in postList) {
@@ -6,6 +7,7 @@ export function createPostList(postList) {
   return arrayList
 }
 
+// function to sort the listarray depending on the options
 export function sortPostList(postList, sort, direction) {
   if (direction) {
     switch (sort) {
@@ -32,6 +34,7 @@ export function sortPostList(postList, sort, direction) {
   }
 }
 
+// format the time for human readability - set to en-US (tried to use locale, but it became strange to mix languages)
 export function formatTime(timestamp) {
   const date = new Date(timestamp)
   var options = {
@@ -47,10 +50,12 @@ export function formatTime(timestamp) {
   return dateString
 }
 
+// function to capitalize the first letter to use on some UI
 export function capitalizeString(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
+// function to filter the array to return only those that contain the search string in the title, body and author
 export function returnSearchedArray(searchArray, searchString) {
   let newArray = searchArray
   if (searchString !== '') {
