@@ -11,6 +11,7 @@ import AddPost from './AddPost'
 import PostList from './PostList'
 import PostDetail from './PostDetail';
 import EditPage from './EditPage';
+import BadRoute from './BadRoute'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -22,9 +23,6 @@ export default function App() {
 
   const categories = useSelector(state => state.categories)
   const loading = useSelector(state => state.loading)
-
-  // check if there´s a selected item to render the details or editing
-  const selected = useSelector(state => state.selectedItem)
 
   // const to prevente sorting and search to render in edit or newPost pages
   const [sortable, setSortable] = useState(true);
@@ -51,6 +49,7 @@ export default function App() {
                     </Route>
                     <Route
                       path='/home'
+                      exact
                       default
                       render={() => {
                         setSortable(true)
@@ -58,38 +57,51 @@ export default function App() {
                       }
                       } />
                     <Route
-                      path='/newPost' exact
+                      path='/newPost'
+                      exact
                       render={() => {
                         setSortable(false)
                         return <AddPost />
                       }} />
                     <Route
-                      path='/post'
-                      component={() => {
-                        setSortable(true)
-                        return <PostDetail postId={selected.id} />
-                      }} />
-                    <Route
-                      path='/editPost'
+                      path='/edit/'
                       render={() => {
                         setSortable(false)
-                        return <EditPage id={selected.id} type='post' />
+                        return <EditPage />
                       }} />
-                    <Route
-                      path='/editComment'
-                      render={() => {
-                        setSortable(false)
-                        return <EditPage id={selected.id} type='comment' />
-                      }} />
+
                     {Array.isArray(categories) && categories.map((category) => (
                       <Route
-                        path={`/${category.path}`} exact
+                        path={`/${category.path}/post/`}
+                        key={`${category.path}post`}
+                        render={() => {
+                          setSortable(true)
+                          return <PostDetail />
+                        }} />
+                    ))}
+                    {Array.isArray(categories) && categories.map((category) => (
+                      <Route
+                        path={`/${category.path}`}
+                        exact
                         key={category.name}
                         render={() => {
                           setSortable(true);
                           return <PostList category={category.name} />
                         }} />
                     ))}
+                    {/* added badRoute Components to render when a page it´s not found */}
+                    <Route
+                      path='/badRoute'
+                      exact
+                      render={() => {
+                        setSortable(false)
+                        return <BadRoute />
+                      }} />
+                    <Route
+                      render={() => {
+                        setSortable(false)
+                        return <BadRoute />
+                      }} />
                   </Switch>
                 </Col>}
             </Row>

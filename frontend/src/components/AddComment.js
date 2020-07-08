@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import AlertInputModal from './AlertInputModal'
 
 export default function AddComment(props) {
+  console.log(props)
   //const for the modal to show
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);

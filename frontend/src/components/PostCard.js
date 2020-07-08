@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import Media from 'react-bootstrap/Media'
 import Button from 'react-bootstrap/Button'
-import { LinkContainer } from 'react-router-bootstrap'
 import VoteButton from './VoteButton'
 import DeleteButton from './DeleteButton'
 import { formatTime } from '../Utilities/helperFunctions'
+import EditPageButton from './EditPageButton'
 
 export default function PostCard(props) {
 
@@ -16,15 +16,20 @@ export default function PostCard(props) {
     <div style={{ paddingBottom: 20 }}>
       <Card border='primary'>
         <Card.Header style={{ backgroundColor: '#0177F7', color: 'white' }}>
-          <Card.Title style={{ flex: 1 }}><h3>{post.title}</h3></Card.Title>
-          <p style={{ fontSize: 14 }} >Posted by {post.author} in {formatTime(post.timestamp)}</p>
-          <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <p style={{ fontSize: 20 }} >Vote Score: {post.voteScore}</p>
-            <div style={{ flex: 1 }} />
-            <VoteButton
-              light
-              id={post.id}
-              type={'post'} />
+          <Card.Title><h3>{post.title}</h3></Card.Title>
+          <div style={{ display: 'flex', flexFlow: 'row' }}>
+            <div>
+            <p style={{ fontSize: 14 }} >Posted by {post.author} in {formatTime(post.timestamp)}</p>
+            <h4 style={{ fontSize: 20 }} >Total Comments: {post.commentCount}</h4>
+            </div>
+            <div style={{flex:1}}/>
+            <div style={{ flexFlow: 'row'}}>
+              <p style={{ fontSize: 20 }} >Vote Score: {post.voteScore}</p>
+              <VoteButton
+                light
+                id={post.id}
+                type={'post'} />
+            </div>
           </div>
         </Card.Header>
         <Card.Body>
@@ -36,11 +41,10 @@ export default function PostCard(props) {
         </Card.Body>
         <Card.Footer>
           <div style={{ display: 'flex', alignContent: 'space-between' }}>
-            <LinkContainer
-            style={{ marginRight: 10 }}
-            to={`/editPost/${post.id}`}>
-              <Button >Edit</Button>
-            </LinkContainer>
+            <EditPageButton
+              item = {post}
+              type = 'post'
+              category = {post.category}/>
             <div style={{ flex: 2 }} />
             <DeleteButton
               id={post.id}
@@ -48,15 +52,18 @@ export default function PostCard(props) {
           </div>
         </Card.Footer>
       </Card>
+
       {!props.addNewComment ?
-        <div style={{display: 'flex',marginTop:20}}>
+        <div style={{ display: 'flex', marginTop: 20 }}>
           <Button
-            style={{margin:'auto'}}
+            style={{ margin: 'auto' }}
             onClick={() => props.handleAddComment(true)}>New Comment
           </Button>
         </div>
         : null
       }
+
     </div>
+
   )
 }

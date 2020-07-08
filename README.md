@@ -21,6 +21,30 @@ Here you can see all the details of a post, add a new comment, and checking all 
 #### Edit Page (comment and post)
 FOr some existing post or detail - you can alwys edit it
 
+### Instalation & Production Instructions
+
+#### Environment setup & Libraries
+
+To install the Library & dependencies
+
+```sh
+  $ npm install
+```
+
+#### Development
+
+Start the Webpack development server:
+
+```sh
+  $ npm start
+```
+
+#### Production Build
+
+```sh
+  $ npm run build
+```
+
 ## API Server
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).

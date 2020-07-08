@@ -1,14 +1,13 @@
 import {
   ADD_POST,
   GET_POST_BY_ID,
-  EDIT_POST
-} from '../actionsTypes'
-
-import {
+  EDIT_POST,
   GET_COMMENT_BY_ID,
-  EDIT_COMMENT
+  EDIT_COMMENT,
+  ADD_COMMENT,
+  VOTE_POST,
+  DELETE_COMMENT
 } from '../actionsTypes'
-
 
 export default function posts(state = {}, action) {
   switch (action.type) {
@@ -24,6 +23,18 @@ export default function posts(state = {}, action) {
     case GET_POST_BY_ID:
       return action.post
     case EDIT_POST:
+      return action.post
+    case ADD_COMMENT:
+      return {
+        ...state,
+        commentCount: state.commentCount + 1
+      }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        commentCount: state.commentCount - 1
+      }
+    case VOTE_POST:
       return action.post
     default:
       return state

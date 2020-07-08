@@ -19,10 +19,9 @@ export default function VoteButton(props) {
   }
 
   return (
-    <div>
+    <div style={{display: "flex", justifyContent: "center"}}>
       <Button
         variant={props.light? 'light' : 'primary'}
-        style={{ marginLeft: 10 }}
         onClick={() => handleVote(UP_VOTE)}>
         <TiThumbsUp 
           style={props.light? { color:'#017BFF' }: { color:'primary' }}/>

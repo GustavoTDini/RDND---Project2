@@ -24,6 +24,7 @@ export default function PostList(props) {
 
 
   if (posts.length === 0){
+    
     return(
       <EmptyList 
         type="posts"/>

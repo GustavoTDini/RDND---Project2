@@ -21,7 +21,6 @@ export const _getCommentById = (commentId) =>
   fetch(`${api}/comments/${commentId}`, { headers })
     .then(res => res.json())
 
-
 export const _voteComment = (commentId, vote) =>
   fetch(`${api}/comments/${commentId}`, {
     method: 'POST',
