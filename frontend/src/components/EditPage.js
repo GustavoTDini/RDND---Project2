@@ -43,12 +43,8 @@ export default function EditPage() {
       <Card border='primary'>
         <Card.Body>
           <Form>
-<<<<<<< HEAD
-            {(location.type === 'post') &&
-=======
             {/* This will only show if the selected item is a post - comments have no title*/}
-            {(props.type === 'post') &&
->>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
+            {(location.type === 'post') &&
               <Form.Group>
                 <Form.Label>Title</Form.Label>
                 <Form.Control

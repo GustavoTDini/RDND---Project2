@@ -5,13 +5,7 @@ import PostCard from './PostCard'
 import CommentList from './CommentList'
 import AddComment from './AddComment'
 
-<<<<<<< HEAD
 export default function PostDetail() {
-=======
-export default function PostDetail(props) {
-
-  // handle the showing of the addcomment component
->>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
   const [addNewComment, setAddNewComment] = useState(false)
   const post = useSelector(state => state.selectedItem)
   const location = useLocation()

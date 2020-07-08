@@ -9,11 +9,8 @@ import DeleteButton from './DeleteButton'
 import EditPageButton from './EditPageButton'
 import { formatTime } from '../Utilities/helperFunctions'
 
-<<<<<<< HEAD
 var Highlight = require('react-highlighter');
 
-=======
->>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
 export default function PostListItem(props) {
 
   const dispatch = useDispatch()
@@ -28,14 +25,7 @@ export default function PostListItem(props) {
     dispatch(clearSearch())
     dispatch(getSinglePost(post.id))
   }
-<<<<<<< HEAD
   
-=======
-
-  // react highlight - a library used to highlight the searched string
-  var Highlight = require('react-highlighter');
-
->>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
   return (
     <Card border='primary' style={{ marginBottom: 30, marginTop: 30 }}>
       <Link to={{

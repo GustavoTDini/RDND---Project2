@@ -26,15 +26,6 @@ export default function PostList(props) {
   // get the list acording to the sorting and selector - once it is already in the store
   const posts = useSelector(state => returnSearchedArray(sortPostList(createPostList(state.posts), sortingType, descending), searchString))
 
-<<<<<<< HEAD
-
-  if (posts.length === 0){
-    
-    return(
-      <EmptyList 
-        type="posts"/>
-    )
-=======
   // Check if the List is empty to show the empty list warning
   if (posts.length === 0) {
     if (searchString !== '') {
@@ -48,7 +39,6 @@ export default function PostList(props) {
           type="emptyPosts" />
       )
     }
->>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
   }
 
   return (

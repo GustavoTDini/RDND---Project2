@@ -9,10 +9,7 @@ import {
   DELETE_COMMENT
 } from '../actionsTypes'
 
-<<<<<<< HEAD
-=======
 // this store has mixed actions of posts and comments to handle the item that is now used
->>>>>>> d97b23d5c96c6ce7271286fc551cb31f8428e6a6
 export default function posts(state = {}, action) {
   switch (action.type) {
     case ADD_POST:
